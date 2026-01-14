@@ -1,13 +1,16 @@
 import Head from 'next/head';
+import Script from 'next/script';
 
 export default function Home() {
   return (
     <>
-      <Head>
-        <title>Hunting Coder</title>
+      
+        <title>Hunt</title>
         <meta name="description" content="A blog for hunting coders by a hunting coder" />
         <link rel="icon" href="/favicon.ico" />
-      </Head>
+        <Script src="/sc.js" strategy='lazyOnload'>
+        </Script>
+      
       <main style={{
         backgroundColor: '#fff',
         minHeight: '100vh',
