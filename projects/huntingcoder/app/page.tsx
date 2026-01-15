@@ -1,16 +1,22 @@
 import Head from 'next/head';
 import Script from 'next/script';
+import styles from "./home.module.css"
 
 export default function Home() {
   return (
     <>
-      
-        <title>Hunt</title>
         <meta name="description" content="A blog for hunting coders by a hunting coder" />
         <link rel="icon" href="/favicon.ico" />
-        <Script src="/sc.js" strategy='lazyOnload'>
-        </Script>
-      
+        {/* <Script src="/sc.js" strategy='lazyOnload'>
+        </Script> */}
+      <nav className={styles.mainnav}>
+        <ul>
+          <li>Home</li>
+          <li>About</li>
+          <li>Blog</li>
+          <li>Contact</li>
+        </ul>
+      </nav>
       <main style={{
         backgroundColor: '#fff',
         minHeight: '100vh',
@@ -22,12 +28,7 @@ export default function Home() {
         fontFamily: '-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, sans-serif',
         lineHeight: 1.4
       }}>
-        <h1 style={{
-          fontSize: '3.5rem',
-          fontWeight: 700,
-          margin: '0 0 0.5rem 0',
-          letterSpacing: '-0.05em'
-        }}>
+        <h1>
           Hunting Coder
         </h1>
         
@@ -41,44 +42,22 @@ export default function Home() {
           A blog for hunting coders by a hunting coder
         </p>
 
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(2, 1fr)',
-          gap: '2rem',
-          width: '100%',
-          maxWidth: '800px',
-          '@media (max-width: 768px)': {
-            gridTemplateColumns: '1fr'
-          }
-        }}>
-          <a href="/docs" style={cardStyle}>
-            <h2 style={h2Style}>Documentation →</h2>
-            <p style={pStyle}>
-              Find in-depth information about Next.js features and API.
-            </p>
-          </a>
-          
-          <a href="/learn" style={cardStyle}>
-            <h2 style={h2Style}>Learn →</h2>
-            <p style={pStyle}>
-              Learn about Next.js in an interactive course with quizzes!
-            </p>
-          </a>
-          
-          <a href="/examples" style={cardStyle}>
-            <h2 style={h2Style}>Examples →</h2>
-            <p style={pStyle}>
-              Discover and deploy boilerplate example Next.js projects.
-            </p>
-          </a>
-          
-          <a href="/deploy" style={cardStyle}>
-            <h2 style={h2Style}>Deploy →</h2>
-            <p style={pStyle}>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+      <div className="blogs">
+        <h2>Popular Blogs</h2>
+        <div className="blogItem">
+          <h3 >How to learn Javascript in 2026?</h3>
+          <p>Javascript is the language used to design logic for the web</p>
         </div>
+        <div className="blogItem">
+          <h3>How to learn Javascript in 2026?</h3>
+          <p>Javascript is the language used to design logic for the web</p>
+        </div>
+        <div className="blogItem">
+          <h3>How to learn Javascript in 2026?</h3>
+          <p>Javascript is the language used to design logic for the web</p>
+        </div>
+     
+      </div>
       </main>
     </>
   );
