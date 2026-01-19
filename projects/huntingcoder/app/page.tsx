@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Script from 'next/script';
 import styles from "./home.module.css"
-
+import Link from 'next/link';
 export default function Home() {
   return (
     <>
@@ -11,10 +11,11 @@ export default function Home() {
         </Script> */}
       <nav className={styles.mainnav}>
         <ul>
-          <li>Home</li>
-          <li>About</li>
-          <li>Blog</li>
-          <li>Contact</li>
+          <Link href="/"><li>Home</li></Link>
+          <Link href="/about"><li>About</li></Link>
+          <Link href="/blog"><li>Blog</li></Link>
+          <Link href="/contact"><li>Contact</li></Link>
+          <Link href="/#hello" scroll={false}><li>Hello</li></Link>
         </ul>
       </nav>
       <main style={{
@@ -53,6 +54,62 @@ export default function Home() {
           <p>Javascript is the language used to design logic for the web</p>
         </div>
         <div className="blogItem">
+          <h3>How to learn Javascript in 2026?</h3>
+          <p>Javascript is the language used to design logic for the web</p>
+        </div>
+        <div className="blogItem">
+          <h3 >How to learn Javascript in 2026?</h3>
+          <p>Javascript is the language used to design logic for the web</p>
+        </div>
+        <div className="blogItem">
+          <h3>How to learn Javascript in 2026?</h3>
+          <p>Javascript is the language used to design logic for the web</p>
+        </div>
+        <div className="blogItem">
+          <h3>How to learn Javascript in 2026?</h3>
+          <p>Javascript is the language used to design logic for the web</p>
+        </div>
+        <div className="blogItem">
+          <h3 >How to learn Javascript in 2026?</h3>
+          <p>Javascript is the language used to design logic for the web</p>
+        </div>
+        <div className="blogItem">
+          <h3>How to learn Javascript in 2026?</h3>
+          <p>Javascript is the language used to design logic for the web</p>
+        </div>
+        <div className="blogItem">
+          <h3>How to learn Javascript in 2026?</h3>
+          <p>Javascript is the language used to design logic for the web</p>
+        </div>
+        <div className="blogItem">
+          <h3>How to learn Javascript in 2026?</h3>
+          <p>Javascript is the language used to design logic for the web</p>
+        </div>
+        <div className="blogItem">
+          <h3 >How to learn Javascript in 2026?</h3>
+          <p>Javascript is the language used to design logic for the web</p>
+        </div>
+        <div className="blogItem">
+          <h3>How to learn Javascript in 2026?</h3>
+          <p>Javascript is the language used to design logic for the web</p>
+        </div>
+        <div className="blogItem">
+          <h3>How to learn Javascript in 2026?</h3>
+          <p>Javascript is the language used to design logic for the web</p>
+        </div>
+        <div className="blogItem">
+          <h3>How to learn Javascript in 2026?</h3>
+          <p>Javascript is the language used to design logic for the web</p>
+        </div>
+        <div className="blogItem">
+          <h3 >How to learn Javascript in 2026?</h3>
+          <p>Javascript is the language used to design logic for the web</p>
+        </div>
+        <div className="blogItem">
+          <h3>How to learn Javascript in 2026?</h3>
+          <p>Javascript is the language used to design logic for the web</p>
+        </div>
+        <div id="hello" className="blogItem">
           <h3>How to learn Javascript in 2026?</h3>
           <p>Javascript is the language used to design logic for the web</p>
         </div>
