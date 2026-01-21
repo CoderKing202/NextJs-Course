@@ -1,18 +1,30 @@
-import Head from 'next/head';
+"use client"
+import Heads from 'next/head';
 import Script from 'next/script';
 import styles from "./home.module.css"
 import Link from 'next/link';
 import styles1 from "./home1.module.css"
+import Dummy from "./components/Dummy"
 
 export default function Home() {
   console.log(styles)
   return (
     <>
+      <Dummy/>
         <meta name="description" content="A blog for hunting coders by a hunting coder" />
         <link rel="icon" href="/favicon.ico" />
         {/* <Script src="/sc.js" strategy='lazyOnload'>
         </Script> */}
       <nav className={styles.mainnav}>
+        <style jsx global>
+          {
+            `
+            .mySpan{
+            color:red;
+            }
+            `
+          }
+        </style>
         <ul>
           <Link href="/"><li>Home</li></Link>
           <Link href="/about"><li>About</li></Link>
@@ -32,7 +44,7 @@ export default function Home() {
         fontFamily: '-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, sans-serif',
         lineHeight: 1.4
       }}>
-        <h1>
+        <h1 className='mySpan'>
           Hunting Coder
         </h1>
         
