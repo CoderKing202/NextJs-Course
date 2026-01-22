@@ -12,3 +12,11 @@
 .col{
     background-color: yellow ;
 }
+.myImg{
+    border-radius: 10px;
+    margin:10px;
+}
+
+.siteTitle{
+    font-size: 38px;
+}

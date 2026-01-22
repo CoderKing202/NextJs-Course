@@ -29,3 +29,6 @@ main{
   justify-content: flex-start !important;
   padding-top:1em !important;
 }
+h3{
+  font-size: 28px;
+}

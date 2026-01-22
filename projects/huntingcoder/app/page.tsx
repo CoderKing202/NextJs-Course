@@ -4,25 +4,26 @@ import Script from 'next/script';
 import styles from "./home.module.css"
 import Link from 'next/link';
 import styles1 from "./home1.module.css"
-import Dummy from "./components/Dummy"
+import Image from 'next/image';
 
 export default function Home() {
   console.log(styles)
   return (
     <>
-      <Dummy/>
+      
         <meta name="description" content="A blog for hunting coders by a hunting coder" />
         <link rel="icon" href="/favicon.ico" />
         {/* <Script src="/sc.js" strategy='lazyOnload'>
         </Script> */}
       <nav className={styles.mainnav}>
-        <style jsx global>
+        <style jsx>
           {
             `
             .mySpan{
-            color:red;
+            color:blue;
             }
             `
+            // it is not suppported in app router
           }
         </style>
         <ul>
@@ -47,7 +48,7 @@ export default function Home() {
         <h1 className='mySpan'>
           Hunting Coder
         </h1>
-        
+         <Image alt="" className={styles.myImg} src={"/coder.avif"} width={237} height={158}/>
         <p style={{
           color: '#666',
           fontSize: '1.2rem',
@@ -57,10 +58,10 @@ export default function Home() {
         }}>
           A blog for hunting coders by a hunting coder
         </p>
-
+       
       {/* <div className={`${styles.col} ${styles1.col}`}> */}
       <div>
-        <h2>Popular Blogs</h2>
+        <h2 className={styles.siteTitle}>Popular Blogs</h2>
         <div className="blogItem">
           <h3 >How to learn Javascript in 2026?</h3>
           <p>Javascript is the language used to design logic for the web</p>
