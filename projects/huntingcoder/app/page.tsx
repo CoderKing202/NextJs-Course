@@ -15,25 +15,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
         {/* <Script src="/sc.js" strategy='lazyOnload'>
         </Script> */}
-      <nav className={styles.mainnav}>
-        <style jsx>
-          {
-            `
-            .mySpan{
-            color:blue;
-            }
-            `
-            // it is not suppported in app router
-          }
-        </style>
-        <ul>
-          <Link href="/"><li>Home</li></Link>
-          <Link href="/about"><li>About</li></Link>
-          <Link href="/blog"><li>Blog</li></Link>
-          <Link href="/contact"><li>Contact</li></Link>
-          <Link href="/#hello" scroll={false}><li>Hello</li></Link>
-        </ul>
-      </nav>
+     
       <main style={{
         backgroundColor: '#fff',
         minHeight: '100vh',
@@ -61,7 +43,7 @@ export default function Home() {
        
       {/* <div className={`${styles.col} ${styles1.col}`}> */}
       <div>
-        <h2 className={styles.siteTitle}>Popular Blogs</h2>
+        <h2 className={styles.siteTitle}>Latest Blogs</h2>
         <div className="blogItem">
           <h3 >How to learn Javascript in 2026?</h3>
           <p>Javascript is the language used to design logic for the web</p>
