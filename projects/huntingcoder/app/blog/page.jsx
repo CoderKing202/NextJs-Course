@@ -1,8 +1,28 @@
 import React from 'react'
+import styles from "@/styles/blog.module.css"
+import Link from "next/link"
 
 function page() {
   return (
-   <div>This is blog</div>
+     <div className={styles.container}>
+      <main className={styles.main}>
+        <h2 className={styles.siteTitle}>Latest Blogs</h2>
+        <Link href="blogpost/learn-javascript">
+          <h3 >How to learn Javascript in 2026?</h3></Link>
+          <p>Javascript is the language used to design logic for the web</p>
+        
+        <div className="blogItem">
+          <h3>How to learn Javascript in 2026?</h3>
+          <p>Javascript is the language used to design logic for the web</p>
+        </div>
+        <div className="blogItem">
+          <h3>How to learn Javascript in 2026?</h3>
+          <p>Javascript is the language used to design logic for the web</p>
+        </div>
+     
+     </main>
+      </div>
+
   )
 }
 
