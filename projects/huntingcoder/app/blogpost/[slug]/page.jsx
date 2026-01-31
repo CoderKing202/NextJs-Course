@@ -3,6 +3,8 @@ import React from 'react'
 import {useParams} from "next/navigation"
 import styles from "@/styles/blogPost.module.css"
 
+// Step1: Find the file corresponsing to the slug 
+// Step3 : Populate them inside the page
 function page() {
     const {slug} = useParams()
     
