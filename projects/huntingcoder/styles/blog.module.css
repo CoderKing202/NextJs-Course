@@ -5,6 +5,18 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    justify-content: flex-start;
+    
     padding-top: 3rem;
+    
+    margin: auto;
+    width: 50%;
+    text-align: center;
+}
+.container{
+    /* display: flex; */
+ 
+}
+
+.blogItemp{
+    max-width: 45vw;
 }
