@@ -1,20 +1,31 @@
 "use client"
-import React from 'react'
+import React, { useEffect,useState } from 'react'
 import {useParams} from "next/navigation"
 import styles from "@/styles/blogPost.module.css"
 
 // Step1: Find the file corresponsing to the slug 
 // Step3 : Populate them inside the page
 function page() {
+    const [blog,setBlog] = useState({})
+    useEffect(()=>{
+         fetch(`http://localhost:3000/api/getBlog?slug=${slug}`)
+      .then((a) => {
+        return a.json();
+      })
+      .then((parsed) => {
+        
+        setBlog(parsed);
+      });
+    },[])
     const {slug} = useParams()
-    
+    console.log(slug)
   return (
     <div className={styles.container}>
       <main className={styles.main}>
       <h1>
-        Title of the page {slug}</h1>
+         {blog.slug}</h1>
         <hr />
-        <div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed tempora et accusantium repellat deserunt numquam nisi, rem optio vero beatae sint similique nulla ex culpa excepturi iste eum amet magni consequuntur? Aspernatur quia autem delectus corrupti quasi molestiae, illo accusamus placeat aliquam mollitia distinctio reprehenderit consequatur cumque et nam. Voluptatum eveniet excepturi non at sapiente quia quaerat laborum harum recusandae. Dolore tenetur blanditiis fuga. Assumenda culpa, sunt, facere quam corporis sed nesciunt animi soluta molestiae dolorem deserunt dolorum maxime incidunt, magni unde delectus. Numquam itaque quaerat iure necessitatibus est totam rem sapiente at! Harum exercitationem perferendis quis, eveniet asperiores consectetur?</div>
+        <div>{blog.content}</div>
       </main>
     </div>
   )
