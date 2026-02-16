@@ -18,4 +18,4 @@ export async function GET(req){
     catch(ex){
         return Response.json(({error:"No such Blog found"}))
     }
-}
+} 

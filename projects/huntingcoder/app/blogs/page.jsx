@@ -1,23 +1,27 @@
-"use client";
-import React, { useEffect, useState } from "react";
+// "use client";
+import React from "react";
 import styles from "@/styles/blog.module.css";
 import Link from "next/link";
 
 // Step 1: Collect all the files from blogData directory
 // Step 2: Iterate through Displays them
-function page() {
-  const [blogs, setBlogs] = useState([]);
-  useEffect(() => {
-    console.log("useEffect is running");
-    fetch(`http://localhost:3000/api/blogs`)
-      .then((a) => {
-        return a.json();
-      })
-      .then((parsed) => {
-        console.log(parsed);
-        setBlogs(parsed);
-      });
-  }, []);
+async function page() {
+  // const [blogs, setBlogs] = useState([]);
+  // useEffect(() => {
+  //   console.log("useEffect is running");
+  //   fetch(`http://localhost:3000/api/blogs`)
+  //     .then((a) => {
+  //       return a.json();
+  //     })
+  //     .then((parsed) => {
+  //       console.log(parsed);
+  //       setBlogs(parsed);
+  //     });
+  // }, []);
+    
+    let data = await fetch(`http://localhost:3000/api/blogs`)
+    let blogs = await data.json()
+
   return (
     <div className={styles.container}>
       <main className={styles.main}>
