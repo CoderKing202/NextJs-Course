@@ -30,7 +30,7 @@ export default function Home() {
         <h1 className='mySpan'>
           Hunting Coder
         </h1>
-         <Image alt="" className={styles.myImg} src={"/coder.avif"} width={237} height={158}/>
+         <img alt="" className={styles.myImg} src={"/coder.avif"} width={237} height={158}/>
         <p style={{
           color: '#666',
           fontSize: '1.2rem',

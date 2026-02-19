@@ -2,6 +2,7 @@
 import React from "react";
 import styles from "@/styles/blog.module.css";
 import Link from "next/link";
+import {promises as fs} from "fs"
 
 // Step 1: Collect all the files from blogData directory
 // Step 2: Iterate through Displays them
@@ -18,25 +19,32 @@ async function page() {
   //       setBlogs(parsed);
   //     });
   // }, []);
-    
-    let data = await fetch(`http://localhost:3000/api/blogs`)
-    let blogs = await data.json()
+
+  let data = await fs.readdir(`blogData`, "utf-8");
+
+  let blogs = [];
+
+ for (const item of data) {
+  let file = await fs.readFile("blogData/" + item, "utf-8");
+  blogs.push(JSON.parse(file));
+}
 
   return (
     <div className={styles.container}>
       <main className={styles.main}>
         <h2 className={styles.siteTitle}>Latest Blogs</h2>
-        {blogs.map((blogItem)=>{
-          return <div className ="blogItem" key={blogItem.slug}>
-        
-        <Link href={`blogpost/${blogItem.slug}`}>
-          <h3>{blogItem.title}</h3>
-        </Link>
-        <p className={styles.blogItemp}>{blogItem.content.substr(0,100)}</p>
-        
-          </div>
+        {blogs.map((blogItem) => {
+          return (
+            <div className="blogItem" key={blogItem.slug}>
+              <Link href={`/blogpost/${blogItem.slug}`}>
+                <h3>{blogItem.title}</h3>
+              </Link>
+              <p className={styles.blogItemp}>
+                {blogItem.content.substr(0, 100)}
+              </p>
+            </div>
+          );
         })}
-        
       </main>
     </div>
   );
