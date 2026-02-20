@@ -40,7 +40,7 @@ async function page() {
                 <h3>{blogItem.title}</h3>
               </Link>
               <p className={styles.blogItemp}>
-                {blogItem.content.substr(0, 100)}
+                {blogItem.metadesc.substr(0, 100)}
               </p>
             </div>
           );

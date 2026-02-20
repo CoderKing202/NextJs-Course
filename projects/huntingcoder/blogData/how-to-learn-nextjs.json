@@ -2,5 +2,6 @@
     "title": "How to Learn Next.js",
     "content": "Next.js is a React-based web framework used for building fast and scalable web applications. It was created by Vercel and first released in 2016. Next.js provides features like server-side rendering, static site generation, file-based routing, API routes, and built-in performance optimizations. It uses React for building user interfaces and allows developers to create both frontend and backend logic in a single project. Next.js supports modern features such as image optimization, middleware, and edge functions. Because of its simplicity, performance, and strong ecosystem, Next.js is widely used for building production-ready websites and full-stack applications.",
     "author": "Jatin Lama",
-    "slug":"how-to-learn-nextjs"
+    "slug":"how-to-learn-nextjs",
+    "metadesc":"Learn flask in few minutes. I will teach you flask in dew minutes"
 }
