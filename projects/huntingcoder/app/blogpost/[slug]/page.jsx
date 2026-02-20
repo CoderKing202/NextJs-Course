@@ -8,6 +8,9 @@ import {promises as fs} from "fs"
 async function page({ params }) {
   console.log(params);
   const { slug } = await params;
+  function createMarkup(c){
+    return{__html:c}
+  }
   console.log(slug);
   let blog
    try{
@@ -23,9 +26,9 @@ async function page({ params }) {
   return (
     <div className={styles.container}>
       <main className={styles.main}>
-        <h1>{blog.slug}</h1>
+        <h1>{blog && blog.slug}</h1>
         <hr />
-        <div>{blog.content}</div>
+        <div>{blog && <div dangerouslySetInnerHTML={createMarkup(blog.content)}></div>}</div>
       </main>
     </div>
   );
