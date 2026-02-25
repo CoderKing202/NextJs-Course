@@ -67,13 +67,16 @@ function page() {
           </label>
           <input
             type="email"
-            className="form-control"
+            className={styles.input}
             id="email"
             name="email"
             aria-describedby="emailHelp"
             value={email}
             onChange={handleChange}
           />
+          <div id="emailHelp" className={styles.formText}>
+            We'll never share your email with anyone else.
+          </div>
         </div>
         <div className={styles.mb3}>
           <label htmlFor="phone" className={styles.formlabel}>
@@ -83,23 +86,23 @@ function page() {
             type="phone"
             name="phone"
             value={phone}
-            className="form-control"
+            className={styles.input}
             id="phone"
             onChange={handleChange}
+            required
           />
         </div>
         <div className={styles.mb3}>
-          <label htmlFor="floatingTextarea">Elaborate your concern</label>
+          <label className={styles.formlabel}htmlFor="floatingTextarea">Elaborate your concern</label>
           <textarea
-            className="form-control"
-            placeholder="Write your concern here"
+            className={styles.input}
             id="desc"
             name="desc"
             value={desc}
             onChange={handleChange}
           ></textarea>
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className={styles.btn}>
           Submit
         </button>
       </form>

@@ -4,6 +4,7 @@ import styles from "@/styles/blog.module.css";
 import Link from "next/link";
 import {promises as fs} from "fs"
 
+
 // Step 1: Collect all the files from blogData directory
 // Step 2: Iterate through Displays them
 async function page() {
@@ -36,12 +37,15 @@ async function page() {
         {blogs.map((blogItem) => {
           return (
             <div className="blogItem" key={blogItem.slug}>
-              <Link href={`/blogpost/${blogItem.slug}`}>
+              
                 <h3>{blogItem.title}</h3>
-              </Link>
+              
               <p className={styles.blogItemp}>
                 {blogItem.metadesc.substr(0, 100)}
               </p>
+              <Link href={`/blogpost/${blogItem.slug}`}>
+              <button className={styles.btn}>Read More</button>
+              </Link>
             </div>
           );
         })}

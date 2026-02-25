@@ -11,15 +11,15 @@ function page() {
     <p>We offer the following services</p>
     <ul>
       <li>Service 1</li>
-      <li>Service 1</li>
-      <li>Service 1</li>
-      <li>Service 1</li>
-      <li>Service 1</li>
-      <li>Service 1</li>
-      <li>Service 1</li>
-      <li>Service 1</li>
-      <li>Service 1</li>
-      <li>Service 1</li>
+      <li>Service 2</li>
+      <li>Service 3</li>
+      <li>Service 4</li>
+      <li>Service 5</li>
+      <li>Service 6</li>
+      <li>Service 7</li>
+      <li>Service 8</li>
+      <li>Service 9</li>
+      <li>Service 10</li>
     </ul>
     <h2>Contact Us</h2>
     Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aliquam dolores molestias neque consequuntur eos, veniam delectus veritatis, reiciendis sequi odit, sint accusamus eligendi officiis facilis maiores. Laboriosam nulla consectetur itaque numquam ad facilis molestiae temporibus sit totam, unde obcaecati, asperiores blanditiis ut, architecto magnam. Cum unde sint assumenda doloremque doloribus voluptates, eum rem aliquid.

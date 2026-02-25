@@ -13,10 +13,32 @@
     background-color: yellow ;
 }
 .myImg{
-    border-radius: 10px;
-    margin:10px;
+    width:157px;
+    border-radius: 92px;
 }
 
-.siteTitle{
-    font-size: 38px;
+.h2{
+    font-size: 2.5rem;
+}
+.mySpan{
+    font-size: 1.5rem;
+}
+.h3{
+    font-size: 1.75rem;
+    margin-top: 0;
+    margin-bottom: 11px;
+}
+.btn{
+    color:white;
+    background: black;
+    padding: 7px 6px;
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.p{
+    margin : 16px 0;
+    margin-top: 3px;
 }

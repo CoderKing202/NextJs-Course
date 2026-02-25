@@ -27,34 +27,30 @@ export default function Home() {
         fontFamily: '-apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, sans-serif',
         lineHeight: 1.4
       }}>
-        <h1 className='mySpan'>
-          Hunting Coder
+                 <img alt="" className={styles.myImg} src={"/coder.avif"} width={237} height={158}/>
+        <h1 className={styles.mySpan}>
+          &lt;HuntingCoder/&gt;
         </h1>
-         <img alt="" className={styles.myImg} src={"/coder.avif"} width={237} height={158}/>
-        <p style={{
-          color: '#666',
-          fontSize: '1.2rem',
-          margin: '0 0 3rem 0',
-          maxWidth: '600px',
-          textAlign: 'center'
-        }}>
-          A blog for hunting coders by a hunting coder
-        </p>
+
+       
        
       {/* <div className={`${styles.col} ${styles1.col}`}> */}
       <div>
-        <h2 className={styles.siteTitle}>Latest Blogs</h2>
-        <div className="blogItem">
-          <h3 >How to learn Javascript in 2026?</h3>
-          <p>Javascript is the language used to design logic for the web</p>
+        <h2 className={styles.h2}>Latest Blogs</h2>
+        <div >
+          <h3 className={styles.h3} >How to learn Javascript in 2026?</h3>
+          <p>Javascript is the language used to design logic for the web Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae eveniet ex inventore quisquam natus! Consequatur, doloremque maxime repudiandae officia veritatis est? Ipsa officia libero consequuntur fugiat magni.</p>
+          <button className={styles.btn}>Read More</button>
         </div>
-        <div className="blogItem">
-          <h3>How to learn Javascript in 2026?</h3>
-          <p>Javascript is the language used to design logic for the web</p>
+        <div >
+          <h3 className={styles.h3}>How to learn Javascript in 2026?</h3>
+          <p className={styles.p}>Javascript is the language used to design logic for the web</p>
+          <button className={styles.btn}>Read More</button>
         </div>
-        <div className="blogItem">
-          <h3>How to learn Javascript in 2026?</h3>
+        <div >
+          <h3 className={styles.h3}>How to learn Javascript in 2026?</h3>
           <p>Javascript is the language used to design logic for the web</p>
+          <button className={styles.btn}>Read More</button>
         </div>
      
      
