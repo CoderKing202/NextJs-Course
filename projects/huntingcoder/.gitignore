@@ -10,6 +10,9 @@
 !.yarn/releases
 !.yarn/versions
 
+blogdata/
+contactdata/
+
 # testing
 /coverage
 

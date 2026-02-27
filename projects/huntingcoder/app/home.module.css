@@ -1,44 +1,55 @@
-.mainnav ul{
-    display: flex;
+.mainnav ul {
+  display: flex;
   justify-content: center;
-      margin-top: 50px;
+  margin-top: 50px;
 }
 
-.mainnav ul li{
-    margin:0px 24px;
+.mainnav ul li {
+  margin: 0px 24px;
+  list-style: none;
+  font-weight: bold;
+}
+.col {
+  background-color: yellow;
+}
+.myImg {
+  width: 157px;
+  border-radius: 92px;
+}
+
+.h2 {
+  font-size: 2.5rem;
+}
+.mySpan {
+  font-size: 1.5rem;
+}
+.h3 {
+  font-size: 1.75rem;
+  margin-top: 0;
+  margin-bottom: 11px;
+}
+.btn {
+  color: white;
+  background: black;
+  padding: 7px 6px;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 12px;
+  margin-bottom: 5px;
+}
+
+.p {
+  margin: 16px 0;
+  margin-top: 3px;
+}
+
+
+@media only screen and (max-width: 600px) {
+  /* will research later */
+
+  .mainnav ul li {
+    margin: 0px 6px;
     list-style: none;
     font-weight: bold;
-}
-.col{
-    background-color: yellow ;
-}
-.myImg{
-    width:157px;
-    border-radius: 92px;
-}
-
-.h2{
-    font-size: 2.5rem;
-}
-.mySpan{
-    font-size: 1.5rem;
-}
-.h3{
-    font-size: 1.75rem;
-    margin-top: 0;
-    margin-bottom: 11px;
-}
-.btn{
-    color:white;
-    background: black;
-    padding: 7px 6px;
-    cursor: pointer;
-    border-radius: 6px;
-    font-size: 12px;
-    margin-bottom: 5px;
-}
-
-.p{
-    margin : 16px 0;
-    margin-top: 3px;
+  }
 }

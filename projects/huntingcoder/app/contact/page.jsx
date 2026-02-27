@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import styles from "@/styles/contact.module.css";
 
-// import "../styles.css"
 function page() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -11,7 +10,7 @@ function page() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(name, email, phone, desc);
+
     const data = { name, email, phone, desc };
     fetch("http://localhost:3000/api/postcontact", {
       method: "POST",
@@ -22,12 +21,11 @@ function page() {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log("Success", data);
-        alert("Thanks for contacting us")
-        setName("")
-        setEmail("")
-        setDescription("")
-        setPhone("")
+        alert("Thanks for contacting us");
+        setName("");
+        setEmail("");
+        setDescription("");
+        setPhone("");
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -80,7 +78,7 @@ function page() {
         </div>
         <div className={styles.mb3}>
           <label htmlFor="phone" className={styles.formlabel}>
-            Password
+            Phone
           </label>
           <input
             type="phone"
@@ -93,7 +91,9 @@ function page() {
           />
         </div>
         <div className={styles.mb3}>
-          <label className={styles.formlabel}htmlFor="floatingTextarea">Elaborate your concern</label>
+          <label className={styles.formlabel} htmlFor="floatingTextarea">
+            Elaborate your concern
+          </label>
           <textarea
             className={styles.input}
             id="desc"
