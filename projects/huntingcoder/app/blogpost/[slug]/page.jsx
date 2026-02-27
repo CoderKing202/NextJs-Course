@@ -14,8 +14,10 @@ async function page({ params }) {
   let blog;
   try {
     const data = await fs.readFile(`blogData/${slug}.json`, "utf-8");
-    blog = JSON.parse(data);
-  } catch (ex) {}
+    blog = await JSON.parse(data);
+  } catch (ex) {
+
+  }
 
   return (
     <div className={styles.container}>
@@ -33,11 +35,12 @@ async function page({ params }) {
 }
 
 export async function generateStaticParams() {
-  return [
-    { slug: "how-to-learn-flask" },
-    { slug: "how-to-learn-javascript" },
-    { slug: "how-to-learn-nextjs" },
-  ];
+  let myBlogs = await fs.promises.readdir("blogdata")
+  console.log(myBlogs)
+  myBlogs = myBlogs.map((item)=>{
+    return { slug: item.split(".")[0]}
+  })
+  return myBlogs;
 }
 
 export default page;
