@@ -35,7 +35,7 @@ async function page({ params }) {
 }
 
 export async function generateStaticParams() {
-  let myBlogs = await fs.promises.readdir("blogdata")
+  let myBlogs = await fs.readdir("blogData")
   console.log(myBlogs)
   myBlogs = myBlogs.map((item)=>{
     return { slug: item.split(".")[0]}
