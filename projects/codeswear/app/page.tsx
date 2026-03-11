@@ -12,7 +12,7 @@ export default function Home() {
       </div>
       <div className="bg-green-800 mx-60">
         Hey bro
-      </div>
+      </div> 
 
     </div>
   );
