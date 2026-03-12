@@ -7,7 +7,7 @@ const page = () => {
     <div>
         Slug is {params.slug}        
     </div>
-  )
+  ) 
 }
 
 export default page
