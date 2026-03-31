@@ -9,16 +9,16 @@ const page = () => {
           <div className="flex flex-wrap -m-4">
             <div className="lg:w-1/5 md:w-1/2 p-4 w-full shadow-lg m-1">
             <Link href={"/product/wear-the-code"}>
-              <a className="block relative rounded overflow-hidden">
+              
                 <img
                   alt="ecommerce"
-                  className="m-auto md:m-0 h-[30vh] md:h-[36vh] block"
-                  src="https://m.media-amazon.com/images/I/41kQxzovI1L.jpg"
+                  className="m-auto md:m-0 block"
+                  src="https://img.freepik.com/premium-vector/cartoon-cute-happy-kawaii-characters-sticker-bookmark-lifestyle-hand-drawn-style_41422-809.jpg?semt=ais_incoming&w=740&q=80"
                 />
-              </a>
+              
               <div className="mt-4 text-center md:text-left">
                 <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
-                  T-Shirts
+                  Stickers
                 </h3>
                 <h2 className="text-gray-900 title-font text-lg font-medium">
                   Wear the code
@@ -30,16 +30,16 @@ const page = () => {
             </div>
             <div className="lg:w-1/5 md:w-1/2 p-4 w-full shadow-lg m-1">
             <Link href={"/product/wear-the-code"}>
-              <a className="block relative rounded overflow-hidden">
+              
                 <img
                   alt="ecommerce"
-                  className="m-auto md:m-0 h-[30vh] md:h-[36vh] block"
-                  src="https://m.media-amazon.com/images/I/41kQxzovI1L.jpg"
+                  className="m-auto md:m-0 block"
+                  src="https://img.freepik.com/premium-vector/cartoon-cute-happy-kawaii-characters-sticker-bookmark-lifestyle-hand-drawn-style_41422-809.jpg?semt=ais_incoming&w=740&q=80"
                 />
-              </a>
+              
               <div className="mt-4 text-center md:text-left">
                 <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
-                  T-Shirts
+                  Stickers
                 </h3>
                 <h2 className="text-gray-900 title-font text-lg font-medium">
                   Wear the code
@@ -51,16 +51,16 @@ const page = () => {
             </div>
             <div className="lg:w-1/5 md:w-1/2 p-4 w-full shadow-lg m-1">
             <Link href={"/product/wear-the-code"}>
-              <a className="block relative rounded overflow-hidden">
+              
                 <img
                   alt="ecommerce"
-                  className="m-auto md:m-0 h-[30vh] md:h-[36vh] block"
-                  src="https://m.media-amazon.com/images/I/41kQxzovI1L.jpg"
+                  className="m-auto md:m-0 block"
+                  src="https://img.freepik.com/premium-vector/cartoon-cute-happy-kawaii-characters-sticker-bookmark-lifestyle-hand-drawn-style_41422-809.jpg?semt=ais_incoming&w=740&q=80"
                 />
-              </a>
+              
               <div className="mt-4 text-center md:text-left">
                 <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
-                  T-Shirts
+                  Stickers
                 </h3>
                 <h2 className="text-gray-900 title-font text-lg font-medium">
                   Wear the code
@@ -72,16 +72,16 @@ const page = () => {
             </div>
             <div className="lg:w-1/5 md:w-1/2 p-4 w-full shadow-lg m-1">
             <Link href={"/product/wear-the-code"}>
-              <a className="block relative rounded overflow-hidden">
+              
                 <img
                   alt="ecommerce"
-                  className="m-auto md:m-0 h-[30vh] md:h-[36vh] block"
-                  src="https://m.media-amazon.com/images/I/41kQxzovI1L.jpg"
+                  className="m-auto md:m-0 block"
+                  src="https://img.freepik.com/premium-vector/cartoon-cute-happy-kawaii-characters-sticker-bookmark-lifestyle-hand-drawn-style_41422-809.jpg?semt=ais_incoming&w=740&q=80"
                 />
-              </a>
+              
               <div className="mt-4 text-center md:text-left">
                 <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
-                  T-Shirts
+                  Stickers
                 </h3>
                 <h2 className="text-gray-900 title-font text-lg font-medium">
                   Wear the code
@@ -93,16 +93,16 @@ const page = () => {
             </div>
             <div className="lg:w-1/5 md:w-1/2 p-4 w-full shadow-lg m-1">
             <Link href={"/product/wear-the-code"}>
-              <a className="block relative rounded overflow-hidden">
+              
                 <img
                   alt="ecommerce"
-                  className="m-auto md:m-0 h-[30vh] md:h-[36vh] block"
-                  src="https://m.media-amazon.com/images/I/41kQxzovI1L.jpg"
+                  className="m-auto md:m-0 block"
+                  src="https://img.freepik.com/premium-vector/cartoon-cute-happy-kawaii-characters-sticker-bookmark-lifestyle-hand-drawn-style_41422-809.jpg?semt=ais_incoming&w=740&q=80"
                 />
-              </a>
+              
               <div className="mt-4 text-center md:text-left">
                 <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
-                  T-Shirts
+                  Stickers
                 </h3>
                 <h2 className="text-gray-900 title-font text-lg font-medium">
                   Wear the code
@@ -114,16 +114,16 @@ const page = () => {
             </div>
             <div className="lg:w-1/5 md:w-1/2 p-4 w-full shadow-lg m-1">
             <Link href={"/product/wear-the-code"}>
-              <a className="block relative rounded overflow-hidden">
+              
                 <img
                   alt="ecommerce"
-                  className="m-auto md:m-0 h-[30vh] md:h-[36vh] block"
-                  src="https://m.media-amazon.com/images/I/41kQxzovI1L.jpg"
+                  className="m-auto md:m-0 block"
+                  src="https://img.freepik.com/premium-vector/cartoon-cute-happy-kawaii-characters-sticker-bookmark-lifestyle-hand-drawn-style_41422-809.jpg?semt=ais_incoming&w=740&q=80"
                 />
-              </a>
+              
               <div className="mt-4 text-center md:text-left">
                 <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
-                  T-Shirts
+                  Stickers
                 </h3>
                 <h2 className="text-gray-900 title-font text-lg font-medium">
                   Wear the code
@@ -135,16 +135,16 @@ const page = () => {
             </div>
             <div className="lg:w-1/5 md:w-1/2 p-4 w-full shadow-lg m-1">
             <Link href={"/product/wear-the-code"}>
-              <a className="block relative rounded overflow-hidden">
+              
                 <img
                   alt="ecommerce"
-                  className="m-auto md:m-0 h-[30vh] md:h-[36vh] block"
-                  src="https://m.media-amazon.com/images/I/41kQxzovI1L.jpg"
+                  className="m-auto md:m-0 block"
+                  src="https://img.freepik.com/premium-vector/cartoon-cute-happy-kawaii-characters-sticker-bookmark-lifestyle-hand-drawn-style_41422-809.jpg?semt=ais_incoming&w=740&q=80"
                 />
-              </a>
+              
               <div className="mt-4 text-center md:text-left">
                 <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
-                  T-Shirts
+                  Stickers
                 </h3>
                 <h2 className="text-gray-900 title-font text-lg font-medium">
                   Wear the code
@@ -156,16 +156,16 @@ const page = () => {
             </div>
             <div className="lg:w-1/5 md:w-1/2 p-4 w-full shadow-lg m-1">
             <Link href={"/product/wear-the-code"}>
-              <a className="block relative rounded overflow-hidden">
+              
                 <img
                   alt="ecommerce"
-                  className="m-auto md:m-0 h-[30vh] md:h-[36vh] block"
-                  src="https://m.media-amazon.com/images/I/41kQxzovI1L.jpg"
+                  className="m-auto md:m-0 block"
+                  src="https://img.freepik.com/premium-vector/cartoon-cute-happy-kawaii-characters-sticker-bookmark-lifestyle-hand-drawn-style_41422-809.jpg?semt=ais_incoming&w=740&q=80"
                 />
-              </a>
+              
               <div className="mt-4 text-center md:text-left">
                 <h3 className="text-gray-500 text-xs tracking-widest title-font mb-1">
-                  T-Shirts
+                  Stickers
                 </h3>
                 <h2 className="text-gray-900 title-font text-lg font-medium">
                   Wear the code
