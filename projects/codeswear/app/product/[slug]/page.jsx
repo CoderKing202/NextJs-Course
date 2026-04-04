@@ -1,27 +1,46 @@
 "use client";
 import React from "react";
-import { useParams } from "next/navigation";
 import { useState } from "react";
+import { addToCart } from "@/store/cartSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "next/navigation";
+// import {setSubTotal} from "@/store/subTotalSlice"
 
-
-const page = () => {
+const Page = () => {
+  const { slug } = useParams();
   const [pin, setPin] = useState("");
-  const [service, setService] = useState(null)
-  const params = useParams();
+  const [service, setService] = useState(null);
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart);
+  const handleAddToCart = (itemCode, qty, price, name, size, variant) => {
+    let newCartItem = {
+      itemCode,
+      qty,
+      price,
+      name,
+      size,
+      variant,
+    };
+    dispatch(addToCart(newCartItem));
+  };
+  const saveCart = (cart)=>{
+    // localStorage.setItem("cart",myCart)
+    // setSubTotal(cart)
+  }
   const checkServiceability = async () => {
     let pins = await fetch("http://localhost:3000/api/pincode");
     let pinJson = await pins.json();
-    console.log(pinJson.includes(parseInt(pin)))
+    console.log(pinJson.includes(parseInt(pin)));
     if (pinJson.includes(parseInt(pin))) {
-      setService(true)
-    }
-    else{
-      setService(false)
+      setService(true);
+    } else {
+      setService(false);
     }
   };
-  const onChangePin = (e)=>{
-    setPin(e.target.value)
-  }
+  const onChangePin = (e) => {
+    setPin(e.target.value);
+  };
+
   return (
     <>
       <section className="text-gray-600 body-font overflow-hidden">
@@ -184,7 +203,19 @@ const page = () => {
                 <button className="flex ml-3 text-white bg-pink-500 border-0 py-2 px-2 md:px-6 focus:outline-none hover:bg-pink-600 rounded">
                   Buy Now
                 </button>
-                <button className="flex ml-5 text-white bg-pink-500 border-0 py-2  md:px-6 focus:outline-none hover:bg-pink-600 rounded">
+                <button
+                  className="flex ml-5 text-white bg-pink-500 border-0 py-2  md:px-6 focus:outline-none hover:bg-pink-600 rounded cursor-pointer"
+                  onClick={() =>
+                    handleAddToCart(
+                      slug,
+                      1,
+                      499,
+                      "Wear the code(XL, Red)",
+                      "XL",
+                      "Red",
+                    )
+                  }
+                >
                   Add To Cart
                 </button>
                 <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
@@ -202,8 +233,11 @@ const page = () => {
               </div>
               <div className="pin mt-6 flex space-x-2 text-sm">
                 <input
-                  type="text" onChange={onChangePin}
-                  className="px-2 border-2 border-grey-400 rounded" value={pin} placeholder="Enter you Pincode"
+                  type="text"
+                  onChange={onChangePin}
+                  className="px-2 border-2 border-grey-400 rounded"
+                  value={pin}
+                  placeholder="Enter you Pincode"
                 />
                 <button
                   className="text-white bg-pink-500 border-0 py-2 px-6 focus:outline-none hover:bg-pink-600 rounded"
@@ -212,12 +246,16 @@ const page = () => {
                   Check
                 </button>
               </div>
-              {!service && service!=null && <div className="text-red-700 text-sm mt-3">
-                Sorry! We do not deliver to this pincode yet
-              </div>}
-              {service && service != null && <div className="text-green-700 text-sm mt-3">
-                Yay! This pincode is servicable
-              </div>}
+              {!service && service != null && (
+                <div className="text-red-700 text-sm mt-3">
+                  Sorry! We do not deliver to this pincode yet
+                </div>
+              )}
+              {service && service != null && (
+                <div className="text-green-700 text-sm mt-3">
+                  Yay! This pincode is servicable
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -226,4 +264,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
