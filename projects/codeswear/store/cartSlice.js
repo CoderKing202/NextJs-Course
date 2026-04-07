@@ -20,6 +20,7 @@ const cartSlice = createSlice({
   reducers: {
     setCart:(state,action)=>{
       state.cart = action.payload
+      calculateSubTotal(state.cart, state);
     },
     addToCart: (state, action) => {
       let { cart } = state;
