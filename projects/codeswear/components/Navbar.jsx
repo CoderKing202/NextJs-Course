@@ -10,6 +10,7 @@ import {
   AiFillMinusCircle,
 } from "react-icons/ai";
 import { BsBagCheckFill } from "react-icons/bs";
+import { MdAccountCircle } from "react-icons/md";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { addToCart } from "@/store/cartSlice";
@@ -18,19 +19,17 @@ import { clearCart } from "@/store/cartSlice";
 import { setCart } from "@/store/cartSlice";
 
 const NavBar = () => {
-    const subTotal = useSelector((state)=>state.cart.subTotal)
-  
-  useEffect(() => {
-    try{
-      if(localStorage.getItem("cart")){
+  const subTotal = useSelector((state) => state.cart.subTotal);
 
-    dispatch(setCart(JSON.parse(localStorage.getItem("cart"))))}}
-    catch(ex){
-      console.log(ex)
-      localStorage.clear()
+  useEffect(() => {
+    try {
+      if (localStorage.getItem("cart")) {
+        dispatch(setCart(JSON.parse(localStorage.getItem("cart"))));
+      }
+    } catch (ex) {
+      console.log(ex);
+      localStorage.clear();
     }
-    
-    
   }, []);
   const handleAddToCart = (itemCode, qty, price, name, size, variant) => {
     let newCartItem = {
@@ -89,15 +88,17 @@ const NavBar = () => {
           </Link>
         </ul>
       </div>
-      <div
-        className="cart absolute right-0 top-4 mx-5 cursor-pointer"
-        onClick={toggleCart}
-      >
-        <AiOutlineShoppingCart className="text-xl md:text-2xl" />
+      <div className="cart absolute right-0 top-4 mx-5 cursor-pointer flex">
+        <Link href="/login">
+        <MdAccountCircle className="text-xl md:text-2xl mx-2" /></Link>
+        <AiOutlineShoppingCart
+          onClick={toggleCart}
+          className="text-xl md:text-2xl"
+        />
       </div>
       <div
         ref={ref}
-        className={`w-72 h-[100vh] sideCart absolute top-0 right-0 bg-pink-100 px-8 py-10 transform transition-transform ${Object.keys(cart.cart).length !== 0?"translate-x-0":"translate-x-full"}`}
+        className={`w-72 h-[100vh] sideCart absolute top-0 right-0 bg-pink-100 px-8 py-10 transform transition-transform ${Object.keys(cart.cart).length !== 0 ? "translate-x-0" : "translate-x-full"}`}
       >
         <h2 className="font-bold text-xl text-center">Shopping Cart</h2>
         <span
@@ -107,7 +108,11 @@ const NavBar = () => {
           <AiFillCloseCircle />
         </span>
         <ol className="list-decimal font-semibold">
-          {Object.keys(cart.cart).length == 0?<span className="font-semibold text-md">Your Cart is empty!</span>:<></>}
+          {Object.keys(cart.cart).length == 0 ? (
+            <span className="font-semibold text-md">Your Cart is empty!</span>
+          ) : (
+            <></>
+          )}
           {Object.keys(cart.cart).map((item) => (
             <li key={item}>
               <div className="item flex my-5">
@@ -148,14 +153,14 @@ const NavBar = () => {
             </li>
           ))}
         </ol>
-        <div className="font-bold my-2">
-          SubTotal: ₹{subTotal}
-        </div>
+        <div className="font-bold my-2">SubTotal: ₹{subTotal}</div>
         <div className="flex">
-         <Link href="/checkout"><button className="flex mr-2 mt-1 text-white bg-pink-500 border-0 py-2 px-2 focus:outline-none hover:bg-pink-600 rounded text-sm cursor-pointer">
-            <BsBagCheckFill className="m-0.5" />
-            Checkout
-          </button></Link>
+          <Link href="/checkout">
+            <button className="flex mr-2 mt-1 text-white bg-pink-500 border-0 py-2 px-2 focus:outline-none hover:bg-pink-600 rounded text-sm cursor-pointer">
+              <BsBagCheckFill className="m-0.5" />
+              Checkout
+            </button>
+          </Link>
           <button
             className="flex mr-2 mt-1 text-white bg-pink-500 border-0 py-2 px-2 focus:outline-none hover:bg-pink-600 rounded text-sm  cursor-pointer"
             onClick={() => dispatch(clearCart())}
