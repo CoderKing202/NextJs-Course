@@ -1,6 +1,6 @@
-const { timeStamp } = require("console");
-const mongoose = require("mongoose");
-const { type } = require("os");
+
+import mongoose from "mongoose"
+
 const UserSchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
@@ -10,5 +10,6 @@ const UserSchema = new mongoose.Schema(
   },
   { timestamps: true },
 );
+mongoose.models={}
 
 export default mongoose.model("User", UserSchema);
