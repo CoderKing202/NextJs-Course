@@ -57,17 +57,17 @@ const Item = ({ product, variants }) => {
             <img
               alt="ecommerce"
               className="lg:w-1/2 w-full lg:h-auto px-4 object-cover object-top rounded"
-              src="https://m.media-amazon.com/images/I/712KRwKKyWL._SX679_.jpg"
+              src={product.img}
             />
             <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
               <h2 className="text-sm title-font text-gray-500 tracking-widest">
                 CODESWEAR
               </h2>
               <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
-                Wear the code (XL/Blue)
+                {product.title} ({product.size}/{product.color})
               </h1>
               <div className="flex mb-4">
-                <span className="flex items-center">
+                {/* <span className="flex items-center">
                   <svg
                     fill="currentColor"
                     stroke="currentColor"
@@ -162,15 +162,10 @@ const Item = ({ product, variants }) => {
                       <path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path>
                     </svg>
                   </a>
-                </span>
+                </span> */}
               </div>
               <p className="leading-relaxed">
-                Fam locavore kickstarter distillery. Mixtape chillwave tumeric
-                sriracha taximy chia microdosing tilde DIY. XOXO fam indxgo
-                juiceramps cornhole raw denim forage brooklyn. Everyday carry +1
-                seitan poutine tumeric. Gastropub blue bottle austin listicle
-                pour-over, neutra jean shorts keytar banjo tattooed umami
-                cardigan.
+                {product.desc}
               </p>
               <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
                 <div className="flex">
@@ -216,11 +211,11 @@ const Item = ({ product, variants }) => {
                   <span className="mr-3">Size</span>
                   <div className="relative">
                     <select value={size} onChange={(e)=>{refreshVariant(e.target.value,color)}} className="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-pink-200 focus:border-pink-500 text-base pl-3 pr-10">
-                      {Object.keys(variants[color]).includes("S") && <option>S</option>}
-                      {Object.keys(variants[color]).includes("M") && <option>M</option>}
-                      {Object.keys(variants[color]).includes("L") && <option>L</option>}
-                      {Object.keys(variants[color]).includes("XL") && <option>XL</option>}
-                      {Object.keys(variants[color]).includes("XXL") && <option>XXL</option>}
+                      {Object.keys(variants[color]).includes("S") && <option value={"S"}>S</option>}
+                      {Object.keys(variants[color]).includes("M") && <option value={"M"}>M</option>}
+                      {Object.keys(variants[color]).includes("L") && <option value={"L"}>L</option>}
+                      {Object.keys(variants[color]).includes("XL") && <option value={"XL"}>XL</option>}
+                      {Object.keys(variants[color]).includes("XXL") && <option value={"XXL"}>XXL</option>}
                     </select>
                     <span className="absolute right-0 top-0 h-full w-10 text-center text-gray-600 pointer-events-none flex items-center justify-center">
                       <svg
@@ -252,15 +247,15 @@ const Item = ({ product, variants }) => {
                       slug,
                       1,
                       499,
-                      "Wear the code(XL, Red)",
-                      "XL",
-                      "Red",
+                      product.title,
+                      size,
+                      color,
                     )
                   }
                 >
                   Add To Cart
                 </button>
-                <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
+                {/* <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
                   <svg
                     fill="currentColor"
                     strokeLinecap="round"
@@ -271,7 +266,7 @@ const Item = ({ product, variants }) => {
                   >
                     <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
                   </svg>
-                </button>
+                </button> */}
               </div>
               <div className="pin mt-6 flex space-x-2 text-sm">
                 <input

@@ -6,7 +6,7 @@ export default function Home() {
     <div>
       
       <div>
-        <img src="/home.jpg" alt="" />
+        <img src="/home.jpg" alt="" className="w-screen"/>
       </div>
       <section className="text-gray-600 body-font">
         <div className="container px-5 py-24 mx-auto">

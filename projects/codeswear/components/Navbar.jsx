@@ -75,16 +75,16 @@ const NavBar = () => {
       <div className="nav">
         <ul className="flex items-center space-x-6 font-bold md:text-md">
           <Link href={"/tshirts"}>
-            <li>TShirt</li>
+            <li className="text-gray-600 hover:text-pink-600">TShirt</li>
           </Link>
           <Link href={"/hoodies"}>
-            <li>Hoodies</li>
+            <li className="text-gray-600 hover:text-pink-600">Hoodies</li>
           </Link>
           <Link href={"/stickers"}>
-            <li>Stickers</li>
+            <li className="text-gray-600 hover:text-pink-600">Stickers</li>
           </Link>
           <Link href={"/mugs"}>
-            <li>Mugs</li>
+            <li className="text-gray-600 hover:text-pink-600">Mugs</li>
           </Link>
         </ul>
       </div>
