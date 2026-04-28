@@ -2,12 +2,15 @@
 import React from "react";
 import { useState } from "react";
 import { addToCart } from "@/store/cartSlice";
+import {clearCart} from "@/store/cartSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 // import {setSubTotal} from "@/store/subTotalSlice"
 
 const Item = ({ product, variants }) => {
   const { slug } = useParams();
+  const router = useRouter()
   const [color, setColor] = useState(product.color);
   const [size, setSize] = useState(product.size);
   const [pin, setPin] = useState("");
@@ -24,6 +27,11 @@ const Item = ({ product, variants }) => {
       variant,
     };
     dispatch(addToCart(newCartItem));
+  };
+  const buyNow = () => {
+    dispatch(clearCart())
+    handleAddToCart(slug, 1, 499, product.title, size, color);
+    router.push("/checkout")
   };
   const saveCart = (cart) => {
     // localStorage.setItem("cart",myCart)
@@ -43,12 +51,10 @@ const Item = ({ product, variants }) => {
     setPin(e.target.value);
   };
   console.log(product, variants);
-  const refreshVariant = (newSize, newColor)=>{
-    
-    
-    let url = `http://localhost:3000/product/${variants[newColor][newSize]["slug"]}`
+  const refreshVariant = (newSize, newColor) => {
+    let url = `http://localhost:3000/product/${variants[newColor][newSize]["slug"]}`;
     window.location = url;
-  }
+  };
   return (
     <>
       <section className="text-gray-600 body-font overflow-hidden">
@@ -164,45 +170,61 @@ const Item = ({ product, variants }) => {
                   </a>
                 </span> */}
               </div>
-              <p className="leading-relaxed">
-                {product.desc}
-              </p>
+              <p className="leading-relaxed">{product.desc}</p>
               <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
                 <div className="flex">
                   <span className="mr-3">Color</span>
                   {Object.keys(variants).includes("white") &&
                     Object.keys(variants["white"]).includes(size) && (
-                      <button onClick={()=>{refreshVariant(size,"white")}}
+                      <button
+                        onClick={() => {
+                          refreshVariant(size, "white");
+                        }}
                         className={`border-2 rounded-full w-8 h-8 focus:outline-none ${color === "white" ? "border-black" : "border-gray-300"} cursor-pointer`}
                       ></button>
                     )}
                   {Object.keys(variants).includes("red") &&
                     Object.keys(variants["red"]).includes(size) && (
-                      <button onClick={()=>{refreshVariant(size,"red")}}
+                      <button
+                        onClick={() => {
+                          refreshVariant(size, "red");
+                        }}
                         className={`border-2 ml-1 bg-red-700 rounded-full w-6 h-6 focus:outline-none ${color === "red" ? "border-black" : "border-gray-300"} cursor-pointer`}
                       ></button>
                     )}
                   {Object.keys(variants).includes("green") &&
                     Object.keys(variants["green"]).includes(size) && (
-                      <button onClick={()=>{refreshVariant(size,"green")}}
+                      <button
+                        onClick={() => {
+                          refreshVariant(size, "green");
+                        }}
                         className={`border-2 ml-1 bg-green-500 rounded-full w-6 h-6 focus:outline-none ${color === "green" ? "border-black" : "border-gray-300"} cursor-pointer`}
                       ></button>
                     )}
                   {Object.keys(variants).includes("blue") &&
                     Object.keys(variants["blue"]).includes(size) && (
-                      <button onClick={()=>{refreshVariant(size,"blue")}}
+                      <button
+                        onClick={() => {
+                          refreshVariant(size, "blue");
+                        }}
                         className={`border-2 ml-1 bg-blue-500 rounded-full w-6 h-6 focus:outline-none ${color === "blue" ? "border-black" : "border-gray-300"} cursor-pointer`}
                       ></button>
                     )}
                   {Object.keys(variants).includes("purple") &&
                     Object.keys(variants["purple"]).includes(size) && (
-                      <button onClick={()=>{refreshVariant(size,"purple")}}
+                      <button
+                        onClick={() => {
+                          refreshVariant(size, "purple");
+                        }}
                         className={`border-2 ml-1 bg-purple-500 rounded-full w-6 h-6 focus:outline-none ${color === "purple" ? "border-black" : "border-gray-300"} cursor-pointer`}
                       ></button>
                     )}
                   {Object.keys(variants).includes("yellow") &&
                     Object.keys(variants["yellow"]).includes(size) && (
-                      <button onClick={()=>{refreshVariant(size,"yellow")}}
+                      <button
+                        onClick={() => {
+                          refreshVariant(size, "yellow");
+                        }}
                         className={`border-2 ml-1 bg-yellow-500 rounded-full w-6 h-6 focus:outline-none ${color === "yellow" ? "border-black" : "border-gray-300"} cursor-pointer`}
                       ></button>
                     )}
@@ -210,12 +232,28 @@ const Item = ({ product, variants }) => {
                 <div className="flex ml-6 items-center">
                   <span className="mr-3">Size</span>
                   <div className="relative">
-                    <select value={size} onChange={(e)=>{refreshVariant(e.target.value,color)}} className="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-pink-200 focus:border-pink-500 text-base pl-3 pr-10">
-                      {Object.keys(variants[color]).includes("S") && <option value={"S"}>S</option>}
-                      {Object.keys(variants[color]).includes("M") && <option value={"M"}>M</option>}
-                      {Object.keys(variants[color]).includes("L") && <option value={"L"}>L</option>}
-                      {Object.keys(variants[color]).includes("XL") && <option value={"XL"}>XL</option>}
-                      {Object.keys(variants[color]).includes("XXL") && <option value={"XXL"}>XXL</option>}
+                    <select
+                      value={size}
+                      onChange={(e) => {
+                        refreshVariant(e.target.value, color);
+                      }}
+                      className="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-pink-200 focus:border-pink-500 text-base pl-3 pr-10"
+                    >
+                      {Object.keys(variants[color]).includes("S") && (
+                        <option value={"S"}>S</option>
+                      )}
+                      {Object.keys(variants[color]).includes("M") && (
+                        <option value={"M"}>M</option>
+                      )}
+                      {Object.keys(variants[color]).includes("L") && (
+                        <option value={"L"}>L</option>
+                      )}
+                      {Object.keys(variants[color]).includes("XL") && (
+                        <option value={"XL"}>XL</option>
+                      )}
+                      {Object.keys(variants[color]).includes("XXL") && (
+                        <option value={"XXL"}>XXL</option>
+                      )}
                     </select>
                     <span className="absolute right-0 top-0 h-full w-10 text-center text-gray-600 pointer-events-none flex items-center justify-center">
                       <svg
@@ -237,20 +275,18 @@ const Item = ({ product, variants }) => {
                 <span className="title-font font-medium text-2xl text-gray-900">
                   ₹499.00
                 </span>
-                <button className="flex ml-3 text-white bg-pink-500 border-0 py-2 px-2 md:px-6 focus:outline-none hover:bg-pink-600 rounded cursor-pointer">
+                <button
+                  className="flex ml-3 text-white bg-pink-500 border-0 py-2 px-2 md:px-6 focus:outline-none hover:bg-pink-600 rounded cursor-pointer"
+                  onClick={() => {
+                    buyNow();
+                  }}
+                >
                   Buy Now
                 </button>
                 <button
                   className="flex ml-5 text-white bg-pink-500 border-0 py-2  md:px-6 focus:outline-none hover:bg-pink-600 rounded cursor-pointer"
                   onClick={() =>
-                    handleAddToCart(
-                      slug,
-                      1,
-                      499,
-                      product.title,
-                      size,
-                      color,
-                    )
+                    handleAddToCart(slug, 1, 499, product.title, size, color)
                   }
                 >
                   Add To Cart
