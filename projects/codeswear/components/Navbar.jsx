@@ -75,7 +75,7 @@ const NavBar = () => {
       <div className="nav">
         <ul className="flex items-center space-x-6 font-bold md:text-md">
           <Link href={"/tshirts"}>
-            <li className="text-gray-600 hover:text-pink-600">TShirt</li>
+            <li className="text-gray-600 hover:text-pink-600">TShirts</li>
           </Link>
           <Link href={"/hoodies"}>
             <li className="text-gray-600 hover:text-pink-600">Hoodies</li>
