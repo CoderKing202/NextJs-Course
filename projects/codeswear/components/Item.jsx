@@ -2,15 +2,17 @@
 import React from "react";
 import { useState } from "react";
 import { addToCart } from "@/store/cartSlice";
-import {clearCart} from "@/store/cartSlice";
+import { clearCart } from "@/store/cartSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 // import {setSubTotal} from "@/store/subTotalSlice"
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Item = ({ product, variants }) => {
   const { slug } = useParams();
-  const router = useRouter()
+  const router = useRouter();
   const [color, setColor] = useState(product.color);
   const [size, setSize] = useState(product.size);
   const [pin, setPin] = useState("");
@@ -29,22 +31,45 @@ const Item = ({ product, variants }) => {
     dispatch(addToCart(newCartItem));
   };
   const buyNow = () => {
-    dispatch(clearCart())
+    dispatch(clearCart());
     handleAddToCart(slug, 1, 499, product.title, size, color);
-    router.push("/checkout")
+    router.push("/checkout");
   };
   const saveCart = (cart) => {
     // localStorage.setItem("cart",myCart)
     // setSubTotal(cart)
   };
   const checkServiceability = async () => {
+    
     let pins = await fetch("http://localhost:3000/api/pincode");
     let pinJson = await pins.json();
     console.log(pinJson.includes(parseInt(pin)));
     if (pinJson.includes(parseInt(pin))) {
       setService(true);
+      toast.success("Your Pincode is Servicable!", {
+        position: "bottom-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        // transition: Bounce,
+      });
     } else {
       setService(false);
+        toast.error("Sorry! Your Pincode not Servicable!", {
+        position: "bottom-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        // transition: Bounce,
+      });
     }
   };
   const onChangePin = (e) => {
@@ -58,6 +83,20 @@ const Item = ({ product, variants }) => {
   return (
     <>
       <section className="text-gray-600 body-font overflow-hidden">
+        <ToastContainer
+          position="bottom-center"
+          autoClose={3000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick={false}
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+          // transition={Bounce}
+        />
+
         <div className="container px-5 py-16 mx-auto">
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
             <img

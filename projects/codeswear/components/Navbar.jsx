@@ -19,18 +19,22 @@ import { clearCart } from "@/store/cartSlice";
 import { setCart } from "@/store/cartSlice";
 
 const NavBar = () => {
+  const dispatch = useDispatch();
+  const ref = useRef(null);
+  const cart = useSelector((state) => state.cart);
   const subTotal = useSelector((state) => state.cart.subTotal);
 
   useEffect(() => {
     try {
-      if (localStorage.getItem("cart")) {
-        dispatch(setCart(JSON.parse(localStorage.getItem("cart"))));
+      const savedCart = localStorage.getItem("cart");
+      if (savedCart) {
+        dispatch(setCart(JSON.parse(savedCart)));
       }
     } catch (ex) {
       console.log(ex);
       localStorage.clear();
     }
-  }, []);
+  }, [dispatch]);
   const handleAddToCart = (itemCode, qty, price, name, size, variant) => {
     let newCartItem = {
       itemCode,
@@ -53,9 +57,9 @@ const NavBar = () => {
     };
     dispatch(removeFromCart(newCartItem));
   };
-  const dispatch = useDispatch();
-  const cart = useSelector((state) => state.cart);
   const toggleCart = () => {
+    if (!ref.current) return;
+
     if (ref.current.classList.contains("translate-x-full")) {
       ref.current.classList.remove("translate-x-full");
       ref.current.classList.add("translate-x-0");
@@ -64,7 +68,6 @@ const NavBar = () => {
       ref.current.classList.add("translate-x-full");
     }
   };
-  const ref = useRef();
   return (
     <div className="flex flex-col md:flex-row md:justify-start justify-center items-center py-2 shadow md sticky top-0 bg-white z-10">
       <div className="logo mx-5">

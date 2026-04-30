@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 import {
   AiFillPlusCircle,
   AiFillMinusCircle,
@@ -9,11 +9,9 @@ import Link from "next/link"
 import { addToCart } from "@/store/cartSlice";
 import { useSelector } from "react-redux";
 import { removeFromCart } from "@/store/cartSlice";
-import { clearCart } from "@/store/cartSlice";
-import { setCart } from "@/store/cartSlice";
 import { useDispatch } from "react-redux";
 
-const page = () => {
+const CheckoutPage = () => {
 
     const dispatch = useDispatch();
     const cart = useSelector((state) => state.cart);
@@ -206,4 +204,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default CheckoutPage;
