@@ -32,7 +32,7 @@ const Item = ({ product, variants }) => {
   };
   const buyNow = () => {
     dispatch(clearCart());
-    handleAddToCart(slug, 1, 499, product.title, size, color);
+    handleAddToCart(slug, 1, product.price, product.title, size, color);
     router.push("/checkout");
   };
   const saveCart = (cart) => {
@@ -312,7 +312,7 @@ const Item = ({ product, variants }) => {
               </div>
               <div className="flex">
                 <span className="title-font font-medium text-2xl text-gray-900">
-                  ₹499.00
+                  ₹{product.price}
                 </span>
                 <button
                   className="flex ml-3 text-white bg-pink-500 border-0 py-2 px-2 md:px-6 focus:outline-none hover:bg-pink-600 rounded cursor-pointer"
@@ -325,7 +325,7 @@ const Item = ({ product, variants }) => {
                 <button
                   className="flex ml-5 text-white bg-pink-500 border-0 py-2  md:px-6 focus:outline-none hover:bg-pink-600 rounded cursor-pointer"
                   onClick={() =>
-                    handleAddToCart(slug, 1, 499, product.title, size, color)
+                    handleAddToCart(slug, 1, product.price, product.title, size, color)
                   }
                 >
                   Add To Cart
