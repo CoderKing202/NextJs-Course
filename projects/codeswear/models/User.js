@@ -8,8 +8,9 @@ const UserSchema = new mongoose.Schema(
     password: { type: String, required: true },
     
   },
-  { timestamps: true },
-);
-mongoose.models={}
+  { timestamps: true },// By time stamp we tell when it was made and updated Mongoose automatically adds it.
 
-export default mongoose.model("User", UserSchema);
+);
+// mongoose.models={}// because of tge below statement you don't ahve to do this
+
+export default mongoose.models.User ||mongoose.model("User", UserSchema);
