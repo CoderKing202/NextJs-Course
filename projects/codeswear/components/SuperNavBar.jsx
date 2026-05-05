@@ -22,6 +22,7 @@ function SuperNavBar() {
     localStorage.removeItem("token");
     setUser({ value: null });
     setKey(Math.random());
+    router.push("/")
   };
   useEffect(() => {
     console.log(progress)
