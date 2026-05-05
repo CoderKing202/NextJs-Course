@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -18,8 +18,9 @@ import { removeFromCart } from "@/store/cartSlice";
 import { clearCart } from "@/store/cartSlice";
 import { setCart } from "@/store/cartSlice";
 
-const NavBar = () => {
+const NavBar = ({ user , logout}) => {
   const dispatch = useDispatch();
+  const [dropDown, setDropDown] = useState(false);
   const ref = useRef(null);
   const cart = useSelector((state) => state.cart);
   const subTotal = useSelector((state) => state.cart.subTotal);
@@ -70,7 +71,7 @@ const NavBar = () => {
   };
   return (
     <div className="flex flex-col md:flex-row md:justify-start justify-center items-center py-2 shadow md sticky top-0 bg-white z-10">
-      <div className="logo mx-5">
+      <div className="logo mr-auto md:mx-5">
         <Link href="/">
           <Image src="/logo.png" width={200} height={40} alt="" />
         </Link>
@@ -91,14 +92,46 @@ const NavBar = () => {
           </Link>
         </ul>
       </div>
-      <div className="cart absolute right-0 top-4 mx-5 cursor-pointer flex">
-        <Link href="/login">
-        <MdAccountCircle className="text-xl md:text-2xl mx-2" /></Link>
+      <div className="cart absolute right-0 top-4 mx-5 cursor-pointer items-center flex">
+        <span
+          onMouseOver={() => setDropDown(true)}
+          onMouseLeave={() => setDropDown(false)}
+        >
+          {dropDown && (
+            <div
+              className="absolute right-5 bg-pink-300 top-6 rounded-md px-5 py-4 w-32"
+              onMouseOver={() => setDropDown(true)}
+              onMouseLeave={() => setDropDown(false)}
+            >
+              <ul>
+                <Link href={"/myaccount"}>
+                  <li className="py-1 hover:text-pink-700 text-sm font-bold">Account</li>
+                </Link>
+                <Link href={"/orders"}>
+                  <li className="py-1 hover:text-pink-700 text-sm font-bold">Orders</li>
+                </Link>
+
+                <li className="py-1 hover:text-pink-700 text-sm font-bold" onClick={logout}>Logout</li>
+              </ul>
+            </div>
+          )}
+          {user.value && (
+            <MdAccountCircle className="text-xl md:text-2xl mx-2" />
+          )}
+        </span>
+        {!user.value && (
+          <Link href="/login">
+            <button className="bg-pink-600 px-2 py-1 rounded-md text-sm text-white mx-2 cursor-pointer">
+              Login
+            </button>
+          </Link>
+        )}
         <AiOutlineShoppingCart
           onClick={toggleCart}
           className="text-xl md:text-2xl"
         />
       </div>
+
       <div
         ref={ref}
         className={`w-72 h-[100vh] sideCart absolute top-0 right-0 bg-pink-100 px-8 overflow-y-scroll py-10 transform transition-transform ${Object.keys(cart.cart).length !== 0 ? "translate-x-0" : "translate-x-full"}`}
