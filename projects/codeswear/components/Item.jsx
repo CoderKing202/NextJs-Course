@@ -41,7 +41,7 @@ const Item = ({ product, variants }) => {
   };
   const checkServiceability = async () => {
     
-    let pins = await fetch("http://localhost:3000/api/pincode");
+    let pins = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pincode`);
     let pinJson = await pins.json();
     console.log(pinJson.includes(parseInt(pin)));
     if (pinJson.includes(parseInt(pin))) {
@@ -77,7 +77,7 @@ const Item = ({ product, variants }) => {
   };
   console.log(product, variants);
   const refreshVariant = (newSize, newColor) => {
-    let url = `http://localhost:3000/product/${variants[newColor][newSize]["slug"]}`;
+    let url = `${process.env.NEXT_PUBLIC_HOST}/product/${variants[newColor][newSize]["slug"]}`;
     window.location = url;
   };
   return (
