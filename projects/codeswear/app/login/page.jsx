@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import "react-toastify/dist/ReactToastify.css";
@@ -8,6 +8,11 @@ const page = () => {
   const router = useRouter()
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  useEffect(()=>{
+    if(localStorage.getItem("token")){
+      router.push("/")
+    }
+  },[])
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = { email, password };
@@ -121,10 +126,7 @@ const page = () => {
             />
 
             <div className="flex items-center justify-between text-sm my-2">
-              <label className="flex items-center gap-2 text-gray-600">
-                <input type="checkbox" className="rounded" />
-                Remember me
-              </label>
+            
 
               <Link href="/forgot" className="text-pink-600 hover:underline">
                 Forgot your password?
