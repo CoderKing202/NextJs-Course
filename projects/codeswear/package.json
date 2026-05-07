@@ -14,6 +14,7 @@
     "jsonwebtoken": "^9.0.3",
     "mongoose": "^9.6.0",
     "next": "16.1.6",
+    "paytmchecksum": "^1.5.1",
     "postcss": "^8.5.12",
     "react": "19.2.3",
     "react-dom": "19.2.3",

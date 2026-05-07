@@ -41,7 +41,7 @@ const CheckOut = () => {
   const initiatePayment = async () => {
     let oid = Math.floor(Math.random() * Date.now());
     // Get a transaction token
-    const data = { cart, subTotal, oid, email: "email" };
+    const data = { cart, subTotal, oid, email: "" };
     let a = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pretransaction`, {
       method: "POST",
       headers: {
@@ -49,16 +49,14 @@ const CheckOut = () => {
       },
       body: JSON.stringify(data),
     });
-    let txnRes = await a.json();
-    console.log(txnRes)
-    let txnToken = txnRes.body.txnToken
-    // console.log(tsxToken);
+    let tsxToken = await a.json();
+    console.log(tsxToken);
     var config = {
       root: "",
       flow: "DEFAULT",
       data: {
         orderId: oid /* update order id */,
-        token: txnToken /* update token value */,
+        token: tsxToken /* update token value */,
         tokenType: "TXN_TOKEN",
         amount: subTotal /* update amount */,
       },
@@ -85,8 +83,8 @@ const CheckOut = () => {
     <div className="container px-2 sm:m-auto">
       <Script
         type="application/javascript"
-        src={`${process.env.NEXT_PUBLIC_PAYTM_HOST}/merchantpgpui/checkoutjs/merchants/${process.env.NEXT_PUBLIC_PAYTM_MID}.js`}
-      />
+        src={`${process.env.PAYTM_HOST}/merchantpgpui/checkoutjs/merchants/${process.env.NEXT_PUBLIC_PAYTM_MID}.js`}
+      ></Script>
       <h1 className="font-bold text-3xl my-8 text-center">Checkout</h1>
       <h2 className="font-semibold text-xl">1. Delivery Details</h2>
       <div className="mx-auto flex my-2">

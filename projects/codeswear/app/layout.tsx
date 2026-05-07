@@ -20,7 +20,6 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Codeswear.com - Wear the code",
   description: "Codeswear.com - Wear the code",
-  
 };
 
 export default function RootLayout({
