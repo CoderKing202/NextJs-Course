@@ -6,8 +6,7 @@ export async function POST(request) {
   await connectDb();
   const body = await request.json();
   const {name ,email} = body
-  let u = new User({name,email,password:CryptoJS.AES.encrypt(body.password,"secret123").toString()});
+  let u = new User({name,email,password:CryptoJS.AES.encrypt(body.password,process.env.AES_SECRET).toString()});
   await u.save();
-  console.log(body);
   return Response.json({ success: "success" });
 }

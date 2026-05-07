@@ -9,18 +9,18 @@ export async function POST(request) {
   const body = await request.json();
 
   let user = await User.findOne({ email: body.email });
-  console.log(body);
+  
   if (user) {
-    const bytes = CryptoJS.AES.decrypt(user.password, "secret123");
+    const bytes = CryptoJS.AES.decrypt(user.password, process.env.AES_SECRET);
     let decryptedPass = bytes.toString(CryptoJS.enc.Utf8);
-    // console.log(typeof JSON.parse(decryptedPass))
+    
     if (body.email == user.email && body.password == decryptedPass) {
       var token = jwt.sign(
         {
           email: user.email,
           name: user.name,
         },
-        "jwtsecret",
+        process.env.JWT_SECRET,
       );
       return Response.json({success:true,token});
     }
@@ -35,5 +35,5 @@ export async function POST(request) {
       error: "No User found",
     });
   }
-  console.log(body);
+  
 }

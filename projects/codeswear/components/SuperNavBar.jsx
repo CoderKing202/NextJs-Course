@@ -32,8 +32,8 @@ function SuperNavBar() {
     const token = localStorage.getItem("token");
     if (token) {
       setUser({ value: token });
-      setKey(Math.random());
     }
+    setKey(Math.random());
   }, [pathName]);
 
   return (
