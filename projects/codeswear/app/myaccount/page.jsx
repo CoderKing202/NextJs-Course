@@ -11,7 +11,7 @@ const page = () => {
         }
       },[])
   return (
-    <div>
+    <div className='min-h-screen'>
       MyAccount
     </div>
   )

@@ -7,19 +7,20 @@ export async function POST(req) {
   const body = Object.fromEntries(formData.entries());
   // Validate paytm checksum -- [Pending]
   // Update status into orders table after checking the transaction status
+  let order
   if (body.STATUS === "TXN_SUCCESS") {
-    await Order.findOneAndUpdate(
+    order = await Order.findOneAndUpdate(
       { orderId: body.ORDERID },
       { status: "Paid", paymentInfo: JSON.stringify(body) },
     );
   } else if (body.STATUS === "PENDING") {
-    await Order.findOneAndUpdate(
+    order = await Order.findOneAndUpdate(
       { orderId: body.ORDERID },
       { status: "Pending", paymentInfo: JSON.stringify(body) },
     );
   }
   // Initiate shipping
   // Redirect user to the order confimation page
-  return Response.redirect("http://localhost:3000/order", 302);
+  return Response.redirect("http://localhost:3000/order?id=" + order._id, 302);
   //   return Response.json({ body });
 }
