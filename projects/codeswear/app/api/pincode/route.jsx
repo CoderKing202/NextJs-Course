@@ -1,3 +1,9 @@
 export function GET(req){
-return Response.json([234400,721302,110003,560017])
+    let pincodes = {
+        "721302":["Kharagpur","West Bengal"],
+        "110003":["Delhi","Delhi"],
+        "560017":["Banglalore","Karnataka"],
+    }
+
+return Response.json(pincodes)
 }

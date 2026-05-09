@@ -2,14 +2,30 @@ const https = require("https");
 import Order from "@/models/Order";
 import connectDb from "../../../helper/mongoose";
 const PaytmChecksum = require("paytmchecksum");
-
+import Product from "@/models/Product";
+import { error } from "console";
 export async function POST(req) {
   const body = await req.json();
   // console.log(body.oid)
   await connectDb();
   var paytmParams = {};
 
-  // Check ig the cart s tampered with --- [Pending]
+  let product, subTotal = 0;
+  // Check if the cart is tampered with --- [Pending]
+
+  for (let item in body.cart.cart) {
+    console.log(item);
+    subTotal += body.cart.cart[item].price * body.cart.cart[item].qty;
+    product = await Product.findOne({ slug: item });
+    console.log("product.price",product.price);
+    console.log("product.",product.price);
+    if (product.price != body.cart.cart[item].price) {
+      return Response.json({ success: false, "error":"The price of some items in your cart have changed. Please try again" }, { status: 200 });
+    }
+  }
+  if (subTotal !== body.cart.subTotal) {
+    return Response.json({ success: false ,"error":"The price of some items in your cart have changed. Please try again"}, { status: 200 });
+  }
 
   // Check if the cart items are out of stock --- [Pending]
 
@@ -81,7 +97,9 @@ export async function POST(req) {
 
         post_res.on("end", function () {
           // console.log("Response: ", response);
-          resolve(JSON.parse(response));
+          let res = JSON.parse(response)
+          res.success = true
+          resolve(res);
         });
       });
 

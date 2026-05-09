@@ -8,6 +8,8 @@ import { useSelector } from "react-redux";
 import { removeFromCart } from "@/store/cartSlice";
 import { useDispatch } from "react-redux";
 import Script from "next/script";
+import { ToastContainer , toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const CheckOut = () => {
   const dispatch = useDispatch();
@@ -19,9 +21,12 @@ const CheckOut = () => {
   const cart = useSelector((state) => state.cart);
   const subTotal = useSelector((state) => state.cart.subTotal);
   const [disabled, setDisabled] = useState(true);
-  const [state, setState] = useState('')
-  const [city, setCity] = useState('')
-  const handleChange = (e) => {
+  const [state, setState] = useState("");
+  const [city, setCity] = useState("");
+  const handleChange = async (e) => {
+    console.log("e.target.value", e.target.value);
+    console.log("pincode", pincode);
+
     if (e.target.name === "name") {
       setName(e.target.value);
     } else if (e.target.name === "email") {
@@ -32,6 +37,19 @@ const CheckOut = () => {
       setAddress(e.target.value);
     } else if (e.target.name === "pincode") {
       setPinCode(e.target.value);
+      if (e.target.value.length === 6) {
+        let pins = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pincode`);
+        let pinJson = await pins.json();
+        console.log(pinJson);
+
+        if (Object.keys(pinJson).includes(e.target.value)) {
+          setState(pinJson[e.target.value][1]);
+          setCity(pinJson[e.target.value][0]);
+        }
+      } else {
+        setState("");
+        setCity("");
+      }
     }
     setTimeout(() => {
       if (
@@ -73,7 +91,7 @@ const CheckOut = () => {
   const initiatePayment = async () => {
     let oid = Math.floor(Math.random() * Date.now());
     // Get a transaction token
-    const data = { cart, subTotal, oid, email , name, address, pincode, phone};
+    const data = { cart, subTotal, oid, email, name, address, pincode, phone };
     let a = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pretransaction`, {
       method: "POST",
       headers: {
@@ -82,38 +100,65 @@ const CheckOut = () => {
       body: JSON.stringify(data),
     });
     let txnRes = await a.json();
-
-    let txnToken = txnRes.body.txnToken;
-    var config = {
-      root: "",
-      flow: "DEFAULT",
-      data: {
-        orderId: oid /* update order id */,
-        token: txnToken /* update token value */,
-        tokenType: "TXN_TOKEN",
-        amount: subTotal /* update amount */,
-      },
-      handler: {
-        notifyMerchant: function (eventName, data) {
-          console.log("notifyMerchant handler function called");
-          console.log("eventName => ", eventName);
-          console.log("data => ", data);
+    console.log(txnRes.success);
+    if (txnRes.success) {
+      let txnToken = txnRes.body.txnToken;
+      var config = {
+        root: "",
+        flow: "DEFAULT",
+        data: {
+          orderId: oid /* update order id */,
+          token: txnToken /* update token value */,
+          tokenType: "TXN_TOKEN",
+          amount: subTotal /* update amount */,
         },
-      },
-    };
+        handler: {
+          notifyMerchant: function (eventName, data) {
+            console.log("notifyMerchant handler function called");
+            console.log("eventName => ", eventName);
+            console.log("data => ", data);
+          },
+        },
+      };
 
-    window.Paytm.CheckoutJS.init(config)
-      .then(function onSuccess() {
-        // after successfully updating configuration, invoke JS Checkout
-        window.Paytm.CheckoutJS.invoke();
-      })
-      .catch(function onError(error) {
-        console.log("error => ", error);
+      window.Paytm.CheckoutJS.init(config)
+        .then(function onSuccess() {
+          // after successfully updating configuration, invoke JS Checkout
+          window.Paytm.CheckoutJS.invoke();
+        })
+        .catch(function onError(error) {
+          console.log("error => ", error);
+        });
+    } else {
+      console.log(txnRes.error);
+      toast.error(txnRes.error, {
+        position: "top-left",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        // transition: Bounce,
       });
+    }
   };
 
   return (
     <div className="container px-2 sm:m-auto">
+      <ToastContainer
+        position="top-left"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
       <Script
         type="application/javascript"
         src={`${process.env.NEXT_PUBLIC_PAYTM_HOST}/merchantpgpui/checkoutjs/merchants/${process.env.NEXT_PUBLIC_PAYTM_MID}.js`}
@@ -220,7 +265,8 @@ const CheckOut = () => {
               type="text"
               id="state"
               name="state"
-              className="w-full bg-white rounded border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" readOnly = {true}
+              className="w-full bg-white rounded border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              onChange={handleChange}
             />
           </div>
         </div>
@@ -235,7 +281,8 @@ const CheckOut = () => {
               id="city"
               name="city"
               value={city}
-              className="w-full bg-white rounded border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" readOnly = {true}
+              className="w-full bg-white rounded border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              onChange={handleChange}
             />
           </div>
         </div>
