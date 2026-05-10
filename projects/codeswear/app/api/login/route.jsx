@@ -22,7 +22,7 @@ export async function POST(request) {
         },
         process.env.JWT_SECRET,
       );
-      return Response.json({success:true,token});
+      return Response.json({success:true,token,email:user.email});
     }
     //Jatin
     return Response.json({

@@ -13,13 +13,15 @@ const page = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ token: localStorage.getItem("token") }),
+        body: JSON.stringify({ token: JSON.parse(localStorage.getItem("myuser")).token }),
       });
+
       console.log("hello");
       let res = await a.json();
+      console.log(res)
       setOrders(res.orders);
     };
-    if (!localStorage.getItem("token")) {
+    if (!localStorage.getItem("myuser")) {
       router.push("/");
     } else {
       fetchOrders();

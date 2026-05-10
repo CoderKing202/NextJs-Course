@@ -5,14 +5,14 @@ import { ToastContainer, toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import "react-toastify/dist/ReactToastify.css";
 const page = () => {
-  const router = useRouter()
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  useEffect(()=>{
-    if(localStorage.getItem("token")){
-      router.push("/")
+  useEffect(() => {
+    if (localStorage.getItem("myuser")) {
+      router.push("/");
     }
-  },[])
+  }, []);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = { email, password };
@@ -29,7 +29,11 @@ const page = () => {
     setEmail("");
     setPassword("");
     if (response.success) {
-      localStorage.setItem("token",response.token)
+      localStorage.setItem("myuser", JSON.stringify({
+        token: response.token,
+        email: response.email,
+      }));
+
       toast.success("You are succesfully logged in!", {
         position: "top-left",
         autoClose: 5000,
@@ -39,11 +43,11 @@ const page = () => {
         draggable: true,
         progress: undefined,
         theme: "light",
-        // transition: Bounce,    
-      }
-    );
-    setTimeout(()=>{router.push(process.env.NEXT_PUBLIC_HOST)},1000)
-    
+        // transition: Bounce,
+      });
+      setTimeout(() => {
+        router.push(process.env.NEXT_PUBLIC_HOST);
+      }, 1000);
     } else {
       toast.error(response.error, {
         position: "top-left",
@@ -126,8 +130,6 @@ const page = () => {
             />
 
             <div className="flex items-center justify-between text-sm my-2">
-            
-
               <Link href="/forgot" className="text-pink-600 hover:underline">
                 Forgot your password?
               </Link>

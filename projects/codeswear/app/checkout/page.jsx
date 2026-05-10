@@ -1,17 +1,20 @@
 "use client";
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
 import { BsBagCheckFill } from "react-icons/bs";
 import Link from "next/link";
-import { addToCart } from "@/store/cartSlice";
+import { addToCart, clearCart } from "@/store/cartSlice";
 import { useSelector } from "react-redux";
 import { removeFromCart } from "@/store/cartSlice";
+
 import { useDispatch } from "react-redux";
 import Script from "next/script";
-import { ToastContainer , toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+
 const CheckOut = () => {
+  
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -20,12 +23,22 @@ const CheckOut = () => {
   const [address, setAddress] = useState("");
   const cart = useSelector((state) => state.cart);
   const subTotal = useSelector((state) => state.cart.subTotal);
+  const [userLogin, setUserLogin] = useState({token:null})
   const [disabled, setDisabled] = useState(true);
   const [state, setState] = useState("");
   const [city, setCity] = useState("");
+  useEffect(() => {
+    const user = JSON.parse(localStorage.getItem('myuser'))
+
+    if(user)
+    {
+      setUserLogin(user)
+      setEmail(user.email)
+    }
+  }, [])
+  
   const handleChange = async (e) => {
-    console.log("e.target.value", e.target.value);
-    console.log("pincode", pincode);
+    console.log(email)
 
     if (e.target.name === "name") {
       setName(e.target.value);
@@ -40,7 +53,7 @@ const CheckOut = () => {
       if (e.target.value.length === 6) {
         let pins = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/pincode`);
         let pinJson = await pins.json();
-        console.log(pinJson);
+        
 
         if (Object.keys(pinJson).includes(e.target.value)) {
           setState(pinJson[e.target.value][1]);
@@ -131,6 +144,8 @@ const CheckOut = () => {
         });
     } else {
       console.log(txnRes.error);
+      // localStorage.removeItem("cart")
+      dispatch(clearCart());
       toast.error(txnRes.error, {
         position: "top-left",
         autoClose: 5000,
@@ -190,14 +205,24 @@ const CheckOut = () => {
             >
               Email
             </label>
-            <input
+          
+          
+          {userLogin.token?<input
               type="email"
               onChange={handleChange}
               value={email}
               id="email"
               name="email"
-              className="w-full bg-white rounded border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-            />
+              className="w-full bg-white rounded border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" readOnly
+            />:<input
+              type="email"
+              onChange={handleChange}
+              value={email}
+              id="email"
+              name="email"
+              className="w-full bg-white rounded border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out" 
+            />}
+            
           </div>
         </div>
       </div>

@@ -10,24 +10,48 @@ export async function POST(req) {
   await connectDb();
   var paytmParams = {};
 
-  let product, subTotal = 0;
+  let product,
+    subTotal = 0;
   // Check if the cart is tampered with --- [Pending]
 
   for (let item in body.cart.cart) {
-    console.log(item);
+    // console.log(item);
     subTotal += body.cart.cart[item].price * body.cart.cart[item].qty;
     product = await Product.findOne({ slug: item });
-    console.log("product.price",product.price);
-    console.log("product.",product.price);
+    // console.log("product.price", product.price);
+    // console.log("product.", product.price);
+    // Check if the cart items are out of stock --- [Pending]
+    if (product.availableQty < body.cart.cart[item].qty) {
+        return Response.json(
+        {
+          success: false,
+          error:
+            "Some items in your cart went out of stock. Please try again!",
+        },
+        { status: 200 },
+      );
+    }
     if (product.price != body.cart.cart[item].price) {
-      return Response.json({ success: false, "error":"The price of some items in your cart have changed. Please try again" }, { status: 200 });
+      return Response.json(
+        {
+          success: false,
+          error:
+            "The price of some items in your cart have changed. Please try again",
+        },
+        { status: 200 },
+      );
     }
   }
   if (subTotal !== body.cart.subTotal) {
-    return Response.json({ success: false ,"error":"The price of some items in your cart have changed. Please try again"}, { status: 200 });
+    return Response.json(
+      {
+        success: false,
+        error:
+          "The price of some items in your cart have changed. Please try again",
+      },
+      { status: 200 },
+    );
   }
-
-  // Check if the cart items are out of stock --- [Pending]
 
   // Check if the details are valid --- [Pending] we will check if the email or address (who knows)
 
@@ -97,8 +121,8 @@ export async function POST(req) {
 
         post_res.on("end", function () {
           // console.log("Response: ", response);
-          let res = JSON.parse(response)
-          res.success = true
+          let res = JSON.parse(response);
+          res.success = true;
           resolve(res);
         });
       });
