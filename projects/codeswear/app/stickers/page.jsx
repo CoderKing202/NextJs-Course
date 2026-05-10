@@ -27,6 +27,10 @@ const page = async () => {
         stickers[item.title].color = [item.color];
         stickers[item.title].size = [item.size];
       }
+      else{
+        stickers[item.title].color = [];
+        stickers[item.title].size = [];
+      }
     }
   }
   console.log(stickers)

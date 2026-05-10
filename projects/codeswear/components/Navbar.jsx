@@ -86,7 +86,7 @@ const NavBar = ({ user , logout}) => {
       <div className="nav">
         <ul className="flex items-center space-x-6 font-bold md:text-md">
           <Link href={"/tshirts"} onClick={()=>handleClick("/tshirts")}>
-            <li className="text-gray-600 hover:text-pink-600">TShirts</li>
+            <li className="text-gray-600  hover:text-pink-600">TShirts</li>
           </Link>
           <Link href={"/hoodies"} onClick={()=>handleClick("/hoodies")}>
             <li className="text-gray-600 hover:text-pink-600">Hoodies</li>
@@ -199,13 +199,13 @@ const NavBar = ({ user , logout}) => {
         <div className="font-bold my-2">SubTotal: ₹{subTotal}</div>
         <div className="flex">
           <Link href="/checkout" onClick={()=>handleClick("/checkout")}>
-            <button className="flex mr-2 mt-1 text-white bg-pink-500 border-0 py-2 px-2 focus:outline-none hover:bg-pink-600 rounded text-sm cursor-pointer">
+            <button disabled={Object.keys(cart.cart).length === 0} className="flex mr-2 mt-1 text-white bg-pink-500 border-0 py-2 px-2 focus:outline-none  disabled:bg-pink-300 hover:bg-pink-600 rounded text-sm cursor-pointer">
               <BsBagCheckFill className="m-0.5" />
               Checkout
             </button>
           </Link>
-          <button
-            className="flex mr-2 mt-1 text-white bg-pink-500 border-0 py-2 px-2 focus:outline-none hover:bg-pink-600 rounded text-sm  cursor-pointer"
+          <button disabled={Object.keys(cart.cart).length === 0}
+            className="disabled:bg-pink-300 flex mr-2 mt-1 text-white bg-pink-500 border-0 py-2 px-2 focus:outline-none hover:bg-pink-600 rounded text-sm  cursor-pointer"
             onClick={() => dispatch(clearCart())}
           >
             <BsBagCheckFill className="m-0.5" />

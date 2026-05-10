@@ -247,9 +247,10 @@ const CheckOut = () => {
         <div className="px-2 w-1/2">
           <div className="mb-4">
             <label htmlFor="phone" className="leading-7 text-sm text-gray-600">
-              Phone
+              Phone Number
             </label>
             <input
+            placeholder="Your 10 Digit Phone Number"
               onChange={handleChange}
               value={phone}
               type="phone"
@@ -299,7 +300,7 @@ const CheckOut = () => {
         <div className="px-2 w-1/2">
           <div className="mb-4">
             <label htmlFor="city" className="leading-7 text-sm text-gray-600">
-              City
+              District
             </label>
             <input
               type="text"

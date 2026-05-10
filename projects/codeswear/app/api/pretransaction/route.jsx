@@ -5,28 +5,33 @@ const PaytmChecksum = require("paytmchecksum");
 import Product from "@/models/Product";
 import { error } from "console";
 export async function POST(req) {
-  const body = await req.json();
   // console.log(body.oid)
   await connectDb();
   var paytmParams = {};
-
+  // Check if the cart is tampered with
   let product,
     subTotal = 0;
-  // Check if the cart is tampered with --- [Pending]
-
+  const body = await req.json();
+  if (body.subTotal <= 0) {
+    return Response.json(
+      {
+        success: false,
+        error: "Cart Empty! Please build your cart and try again!",
+      },
+      { status: 200 },
+    );
+  }
   for (let item in body.cart.cart) {
-    // console.log(item);
     subTotal += body.cart.cart[item].price * body.cart.cart[item].qty;
     product = await Product.findOne({ slug: item });
     // console.log("product.price", product.price);
     // console.log("product.", product.price);
-    // Check if the cart items are out of stock --- [Pending]
+    // Check if the cart items are out of stock
     if (product.availableQty < body.cart.cart[item].qty) {
-        return Response.json(
+      return Response.json(
         {
           success: false,
-          error:
-            "Some items in your cart went out of stock. Please try again!",
+          error: "Some items in your cart went out of stock. Please try again!",
         },
         { status: 200 },
       );
@@ -53,7 +58,27 @@ export async function POST(req) {
     );
   }
 
-  // Check if the details are valid --- [Pending] we will check if the email or address (who knows)
+  // Check if the details are valid --- [Pending] we will check if the email or address is valid(who knows)
+  
+  if (body.phone.length !== 10 || !Number.isInteger(Number(body.phone))) {
+    return Response.json(
+      {
+        success: false,
+        error: "Please enter your 10 digit phone number",
+      },
+      { status: 200 },
+    );
+  }
+  console.log(typeof body.pincode)
+  if (body.pincode.length !== 6 || !Number.isInteger(Number(body.pincode))) {
+    return Response.json(
+      {
+        success: false,
+        error: "Please enter your 6 digit pincode",
+      },
+      { status: 200 },
+    );
+  }
 
   // intiate an order corresponsign to this order id
   let order = new Order({
