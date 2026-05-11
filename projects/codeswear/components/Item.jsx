@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import { addToCart } from "@/store/cartSlice";
 import { clearCart } from "@/store/cartSlice";
@@ -9,8 +9,12 @@ import { useRouter } from "next/navigation";
 // import {setSubTotal} from "@/store/subTotalSlice"
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Error from "next/error"
 
-const Item = ({ product, variants }) => {
+const Item = ({ product, variants, error }) => {
+  if(error === 404){
+    return <Error statusCode={error}/>
+  }
   const { slug } = useParams();
   const router = useRouter();
   const [color, setColor] = useState(product.color);
@@ -30,6 +34,11 @@ const Item = ({ product, variants }) => {
     };
     dispatch(addToCart(newCartItem));
   };
+  
+  useEffect(() => {
+    console.log(product.availableQty)
+  }, [])
+  
   const buyNow = () => {
     dispatch(clearCart());
     handleAddToCart(slug, 1, product.price, product.title, size, color);
@@ -312,19 +321,22 @@ const Item = ({ product, variants }) => {
                 </div>
               </div>
               <div className="flex">
-                <span className="title-font font-medium text-2xl text-gray-900">
+                {product.availableQty > 0 && <span className="title-font font-medium text-2xl text-gray-900">
                   ₹{product.price}
-                </span>
-                <button
-                  className="flex ml-3 text-white bg-pink-500 border-0 py-2 px-2 md:px-6 focus:outline-none hover:bg-pink-600 rounded cursor-pointer"
+                </span>}
+                {product.availableQty <= 0 && <span className="title-font font-medium text-2xl text-gray-900">
+                  Out of Stock!
+                </span>}
+                <button disabled={product.availableQty<=0}
+                  className="flex ml-3 disabled:bg-pink-300 text-white bg-pink-500 border-0 py-2 px-2 md:px-6 focus:outline-none hover:bg-pink-600 rounded cursor-pointer"
                   onClick={() => {
                     buyNow();
                   }}
                 >
                   Buy Now
                 </button>
-                <button
-                  className="flex ml-5 text-white bg-pink-500 border-0 py-2  md:px-6 focus:outline-none hover:bg-pink-600 rounded cursor-pointer"
+                <button disabled={product.availableQty<=0}
+                  className="flex ml-5 disabled:bg-pink-300 text-white bg-pink-500 border-0 py-2  md:px-6 focus:outline-none hover:bg-pink-600 rounded cursor-pointer"
                   onClick={() =>
                     handleAddToCart(slug, 1, product.price, product.title, size, color)
                   }

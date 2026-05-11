@@ -1,13 +1,22 @@
-import React from "react";
 import Item from "../../../components/Item";
 import Product from "@/models/Product";
 import connectDb from "../../../helper/mongoose";
 
 const Page = async ({ params }) => {
   await connectDb();
+  let error = 200
   let resolvedParams = await params;
   let product = await Product.findOne({ slug: resolvedParams.slug });
-  console.log(product);
+  if(product === null){
+    error = 404
+    return(<>
+     <Item
+        product={JSON.parse(JSON.stringify({}))}
+        variants={JSON.parse(JSON.stringify({}))}
+        error={error}
+      />
+    </>)
+  }
   let variants = await Product.find({
     title: product.title,
     category: product.category,
@@ -28,6 +37,7 @@ const Page = async ({ params }) => {
       <Item
         product={JSON.parse(JSON.stringify(product))}
         variants={JSON.parse(JSON.stringify(colorSizeSlug))}
+        error={error}
       />
     </>
   );
