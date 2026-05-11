@@ -7,6 +7,6 @@ export async function POST(req) {
     const body = await req.json()
     const token = body.token
     const data  = jsonwebtoken.verify(token, process.env.JWT_SECRET)
-    let orders = await Order.find({email:data.email})
+    let orders = await Order.find({email:data.email,status:"Paid"})
         return Response.json({orders},{status:200})
     }

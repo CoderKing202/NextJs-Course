@@ -78,7 +78,8 @@ const Item = ({ product, variants }) => {
   console.log(product, variants);
   const refreshVariant = (newSize, newColor) => {
     let url = `${process.env.NEXT_PUBLIC_HOST}/product/${variants[newColor][newSize]["slug"]}`;
-    window.location = url;
+    // window.location = url;
+    router.push(url)
   };
   return (
     <>

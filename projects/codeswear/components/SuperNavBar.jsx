@@ -15,7 +15,8 @@ import { clearCart } from "@/store/cartSlice";
 function SuperNavBar() {
   const progress = useSelector((state)=>state.progress)
   const userLogin = useSelector((state)=>state.userLogin)
-
+ 
+  
   // console.log(progress)
   const dispatch = useDispatch()
   const router = useRouter()
