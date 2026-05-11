@@ -138,7 +138,7 @@ const NavBar = ({ user, logout }) => {
                 </Link>
                 <Link href={"/orders"} onClick={() => handleClick("/orders")}>
                   <li className="py-1 hover:text-pink-700 text-sm font-bold">
-                    Orders
+                    My Orders
                   </li>
                 </Link>
 

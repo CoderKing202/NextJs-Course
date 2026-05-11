@@ -18,6 +18,9 @@ async function page({searchParams}) {
         <h1 className="text-gray-900 text-xl md:text-3xl title-font font-medium mb-4">Order id : {order.orderId}</h1>
         <p className="leading-relaxed mb-4">Yayy! your order has been succesfully placed!
            </p>
+        <p className="leading-relaxed mb-4">
+          Order placed on: {order.createdAt.toLocaleDateString("en-IN",{weekday:'long',year:'numeric',month:'long',day:'numeric'})}
+           </p>
            <p>Your status Payment is <span className='font-semibold text-slate-700'>{order.status}</span></p>
          <div className="flex mb-4">
           <a className="flex-grow text-center border-gray-300 py-2 text-lg px-1">Item Description</a>
