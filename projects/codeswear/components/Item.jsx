@@ -23,7 +23,7 @@ const Item = ({ product, variants, error }) => {
   const [service, setService] = useState(null);
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
-  const handleAddToCart = (itemCode, qty, price, name, size, variant) => {
+  const handleAddToCart = (itemCode, qty, price, name,  size, variant) => {
     let newCartItem = {
       itemCode,
       qty,

@@ -34,12 +34,12 @@ export async function POST(req) {
   if (body.STATUS === "TXN_SUCCESS") {
     order = await Order.findOneAndUpdate(
       { orderId: body.ORDERID },
-      { status: "Paid", paymentInfo: JSON.stringify(body) },
+      { status: "Paid", paymentInfo: JSON.stringify(body), transactionId:body.TXNID},
     );
     let products = order.products.cart;
 
     for (let slug in products) {
-      console.log(products[slug].qty, "Hello");
+      // console.log(products[slug].qty, "Hello");
       await Product.findOneAndUpdate(
         { slug: slug },
         { $inc: { availableQty: -products[slug].qty } },
@@ -48,7 +48,7 @@ export async function POST(req) {
   } else if (body.STATUS === "PENDING") {
     order = await Order.findOneAndUpdate(
       { orderId: body.ORDERID },
-      { status: "Pending", paymentInfo: JSON.stringify(body) },
+      { status: "Pending", paymentInfo: JSON.stringify(body), transactionId:body.TXNID },
     );
   }
 

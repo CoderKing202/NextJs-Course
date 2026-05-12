@@ -50,7 +50,7 @@ function SuperNavBar() {
         onLoaderFinished={() => dispatch(setProgress(0))}
         waitingTime={400}
       />
-      {key && <Navbar logout={logout} user={userLogin} key={key} />}
+      {key && <Navbar logout={logout} user={userLogin} key={key} setKey={setKey} />}
     </>
   );
 }

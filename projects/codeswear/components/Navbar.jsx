@@ -20,7 +20,7 @@ import { setCart } from "@/store/cartSlice";
 import { setProgress } from "@/store/ProgressSlice";
 import { usePathname } from "next/navigation";
 
-const NavBar = ({ user, logout }) => {
+const NavBar = ({ user, logout,setKey }) => {
   const [sidebar, setSidebar] = useState(false);
   const dispatch = useDispatch();
   const pathName = usePathname();
@@ -55,6 +55,7 @@ const NavBar = ({ user, logout }) => {
     }
   }, []);
   const handleAddToCart = (itemCode, qty, price, name, size, variant) => {
+    setKey(Math.random())
     let newCartItem = {
       itemCode,
       qty,

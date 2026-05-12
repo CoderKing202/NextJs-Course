@@ -3,7 +3,8 @@ import Order from "@/models/Order";
 import connectDb from "../../../helper/mongoose";
 const PaytmChecksum = require("paytmchecksum");
 import Product from "@/models/Product";
-import { error } from "console";
+import pincodes from "@/data/pincodes.json"
+
 export async function POST(req) {
   // console.log(body.oid)
   await connectDb();
@@ -16,7 +17,18 @@ export async function POST(req) {
     return Response.json(
       {
         success: false,
-        error: "Cart Empty! Please build your cart and try again!",
+        error: "Cart Empty! Please build your cart and try again!",cartClear:false
+      },
+      { status: 200 },
+    );
+  }
+    // Check if the pincode is servicable
+  if(!Object.keys(pincodes).includes(body.pincode))
+  {
+    return Response.json(
+      {
+        success: false,
+        "error": "The pincode you have entered is not servicable",cartClear:false,cartClear:false
       },
       { status: 200 },
     );
@@ -31,7 +43,7 @@ export async function POST(req) {
       return Response.json(
         {
           success: false,
-          error: "Some items in your cart went out of stock. Please try again!",
+          error: "Some items in your cart went out of stock. Please try again!",cartClear:true
         },
         { status: 200 },
       );
@@ -41,7 +53,7 @@ export async function POST(req) {
         {
           success: false,
           error:
-            "The price of some items in your cart have changed. Please try again",
+            "The price of some items in your cart have changed. Please try again",cartClear:true
         },
         { status: 200 },
       );
@@ -52,7 +64,7 @@ export async function POST(req) {
       {
         success: false,
         error:
-          "The price of some items in your cart have changed. Please try again",
+          "The price of some items in your cart have changed. Please try again",cartClear:true
       },
       { status: 200 },
     );
@@ -64,7 +76,7 @@ export async function POST(req) {
     return Response.json(
       {
         success: false,
-        error: "Please enter your 10 digit phone number",
+        error: "Please enter your 10 digit phone number",cartClear:false
       },
       { status: 200 },
     );
@@ -74,7 +86,7 @@ export async function POST(req) {
     return Response.json(
       {
         success: false,
-        error: "Please enter your 6 digit pincode",
+        error: "Please enter your 6 digit pincode",cartClear:false
       },
       { status: 200 },
     );
@@ -148,6 +160,8 @@ export async function POST(req) {
           // console.log("Response: ", response);
           let res = JSON.parse(response);
           res.success = true;
+          res.cartClear = false
+          // Teacher says to not clear cart if they have not completed the payment and just take the transaction token but we don't think so what we assume if due to no internet no trnsaction token are generated then cart should not be empty and it is not working whopo knows what he is saying
           resolve(res);
         });
       });

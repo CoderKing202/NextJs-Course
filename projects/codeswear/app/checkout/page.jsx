@@ -143,9 +143,11 @@ const CheckOut = () => {
           console.log("error => ", error);
         });
     } else {
-      console.log(txnRes.error);
+      console.log(txnRes);
       // localStorage.removeItem("cart")
-      dispatch(clearCart());
+      if(txnRes.cartClear){
+        dispatch(clearCart());
+      }
       toast.error(txnRes.error, {
         position: "top-left",
         autoClose: 5000,

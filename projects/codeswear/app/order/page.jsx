@@ -31,7 +31,7 @@ async function page({searchParams}) {
           <div key = {key}className="flex border-t border-gray-200 py-2">
           <span className="text-gray-500">{order.products.cart[key].name}({order.products.cart[key].size} / {order.products.cart[key].variant})</span>
           <span className="m-auto text-gray-900">{order.products.cart[key].qty}</span>
-          <span className="m-auto text-gray-900">₹{order.products.cart[key].price}</span>
+          <span className="m-auto text-gray-900">₹{order.products.cart[key].price} X {order.products.cart[key].qty} = ₹{order.products.cart[key].price * order.products.cart[key].qty}</span>
         </div>
         ))}
      
