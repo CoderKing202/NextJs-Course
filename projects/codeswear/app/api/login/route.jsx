@@ -13,7 +13,6 @@ export async function POST(request) {
   if (user) {
     const bytes = CryptoJS.AES.decrypt(user.password, process.env.AES_SECRET);
     let decryptedPass = bytes.toString(CryptoJS.enc.Utf8);
-    
     if (body.email == user.email && body.password == decryptedPass) {
       var token = jwt.sign(
         {

@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Error from "next/error"
+import { setKey } from "@/store/keySlice";
 
 const Item = ({ product, variants, error }) => {
   if(error === 404){
@@ -32,6 +33,7 @@ const Item = ({ product, variants, error }) => {
       size,
       variant,
     };
+    dispatch(setKey(Math.random()))
     dispatch(addToCart(newCartItem));
   };
   

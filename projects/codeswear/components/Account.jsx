@@ -1,12 +1,3 @@
-// import Account from "@/components/Account"
-// async function page() {
-
-//   return (
-//     <Account/>
-//   )
-// }
-
-// export default page
 "use client";
 import { useEffect, useState } from "react";
 import { AiFillPlusCircle, AiFillMinusCircle } from "react-icons/ai";
@@ -21,34 +12,29 @@ import Script from "next/script";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
-
 const page = () => {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [pincode, setPinCode] = useState("");
-  const [disabled, setDisabled] = useState("");
   const [address, setAddress] = useState("");
   const [userLogin, setUserLogin] = useState({ token: null });
-  const [password, setPassword] = useState("");
-  const [cpassword, setCPassword] = useState("");
-  const [npassword, setNPassword] = useState("");
+  const [password, setPassword] = useState();
+  const [cpassword, setCPassword] = useState();
   const router = useRouter();
 
   useEffect(() => {
-    const myuser = JSON.parse(localStorage.getItem("myuser"));
-
-    if (!myuser) {
+    const user = JSON.parse(localStorage.getItem("myuser"));
+    console.log(user);
+    if (!user) {
       router.push("/");
     }
-    if (myuser) {
-      setUserLogin(myuser);
-      setEmail(myuser.email);
-      fetchData(myuser.token);
+    if (user) {
+      setUserLogin(user);
+      setEmail(user.email);
     }
   }, []);
-
   const handleChange = async (e) => {
     if (e.target.name === "name") {
       setName(e.target.value);
@@ -58,12 +44,10 @@ const page = () => {
       setAddress(e.target.value);
     } else if (e.target.name === "pincode") {
       setPinCode(e.target.value);
-    } else if (e.target.name === "password") {
+    }else if (e.target.name === "password") {
       setPassword(e.target.value);
-    } else if (e.target.name === "cpassword") {
+    }else if (e.target.name === "cpassword") {
       setCPassword(e.target.value);
-    } else if (e.target.name === "npassword") {
-      setNPassword(e.target.value);
     }
 
     setTimeout(() => {
@@ -80,111 +64,20 @@ const page = () => {
       }
     }, 100);
   };
-
-  const fetchData = async (token) => {
-    let data = { token: token };
-    
-    let a = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/getuser`, {
+  const handleUserSubmit=async ()=>{
+    let data ={token:user.token}
+    let a = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/getUser`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(data),
     });
-    let res = await a.json();
+    let txnRes = await a.json();
+  }
     
-    setName(res.name);
-    setAddress(res.address);
-    setPinCode(res.pincode);
-    setPhone(res.phone);
-  };
-  const handleUserSubmit = async () => {
-    let data = { token: userLogin.token, address, name, phone, pincode };
-    
-    let a = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/updateuser`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-    let res = await a.json();
-    if (res.success) {
-      toast.success("Succesfully Updated Details", {
-        position: "top-left",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        // transition: Bounce,
-      });
-    }
-  };
-  const handlePasswordSubmit = async () => {
-    let data = { token: userLogin.token, password, cpassword, npassword };
-    let res;
-    if (npassword === cpassword) {
-      let a = await fetch(
-        `${process.env.NEXT_PUBLIC_HOST}/api/updatepassword`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        },
-      );
-      res = await a.json();
-    } else {
-      res = { success: false };
-    }
-    if (res.success) {
-      toast.success("Succesfully Updated Password", {
-        position: "top-left",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        // transition: Bounce,
-      });
-    } else {
-      toast.error("Error Updating Password", {
-        position: "top-left",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-        // transition: Bounce,
-      });
-    }
-    setPassword("")
-    setCPassword("")
-    setNPassword("")
-  };
-
   return (
     <div className="container mx-auto my-9">
-      <ToastContainer
-        position="top-left"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick={false}
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
       <h1 className="text-3xl text-center font-bold">Update your Account</h1>
       <h2 className="font-semibold text-xl">1. Delivery Details</h2>
       <div className="mx-auto flex my-2">
@@ -290,10 +183,7 @@ const page = () => {
           </div>
         </div>
       </div>
-      <button
-        onClick={handleUserSubmit}
-        className="mb-5 mx-2 disabled:bg-pink-300 flex mt-1 text-white bg-pink-500 border-0 py-2 px-2 focus:outline-none hover:bg-pink-600 rounded text-sm cursor-pointer"
-      >
+      <button className="mb-5 mx-2 disabled:bg-pink-300 flex mt-1 text-white bg-pink-500 border-0 py-2 px-2 focus:outline-none hover:bg-pink-600 rounded text-sm cursor-pointer">
         Submit
       </button>
       <h2 className="font-semibold text-xl">2. Change Password</h2>
@@ -317,32 +207,13 @@ const page = () => {
           </div>
         </div>
 
-       
         <div className="px-2 w-1/2">
           <div className="mb-4">
             <label
-              htmlFor="npassword"
+              htmlFor="password"
               className="leading-7 text-sm text-gray-600"
             >
-              New Password
-            </label>
-            <input
-              type="password"
-              onChange={handleChange}
-              value={npassword}
-              id="npassword"
-              name="npassword"
-              className="w-full bg-white rounded border border-gray-300 focus:border-pink-500 focus:ring-2 focus:ring-pink-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-            />
-          </div>
-        </div>
-         <div className="px-2 w-1/2">
-          <div className="mb-4">
-            <label
-              htmlFor="cpassword"
-              className="leading-7 text-sm text-gray-600"
-            >
-              Confirm New Password
+              Confirm Password
             </label>
             <input
               type="password"
@@ -355,12 +226,7 @@ const page = () => {
           </div>
         </div>
       </div>
-      <button
-        onClick={handlePasswordSubmit}
-        className="disabled:bg-pink-300 flex mt-1 text-white bg-pink-500 border-0 py-2 px-2 mx-2 focus:outline-none hover:bg-pink-600 rounded text-sm cursor-pointer"
-      >
-        Submit
-      </button>
+          <button className="disabled:bg-pink-300 flex mt-1 text-white bg-pink-500 border-0 py-2 px-2 mx-2 focus:outline-none hover:bg-pink-600 rounded text-sm cursor-pointer">Submit</button>
     </div>
   );
 };

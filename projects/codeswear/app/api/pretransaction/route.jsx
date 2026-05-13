@@ -97,8 +97,13 @@ export async function POST(req) {
     email: body.email,
     orderId: body.oid,
     address: body.address,
+    city: body.city,
+    state: body.state,
     amount: body.subTotal,
     products: body.cart,
+    pincode: body.pincode,
+    phone: body.phone,
+    name:body.name
   });
   await order.save();
 

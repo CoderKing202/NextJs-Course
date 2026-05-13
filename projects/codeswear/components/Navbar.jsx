@@ -19,8 +19,9 @@ import { clearCart } from "@/store/cartSlice";
 import { setCart } from "@/store/cartSlice";
 import { setProgress } from "@/store/ProgressSlice";
 import { usePathname } from "next/navigation";
+import { setKey } from "@/store/keySlice";
 
-const NavBar = ({ user, logout,setKey }) => {
+const NavBar = ({ user, logout }) => {
   const [sidebar, setSidebar] = useState(false);
   const dispatch = useDispatch();
   const pathName = usePathname();
@@ -48,14 +49,15 @@ const NavBar = ({ user, logout,setKey }) => {
   useEffect(() => {
     Object.keys(cart.cart).length !== 0 && setSidebar(true);
 
-    // console.log(cart)
+    
     let exempted = ['/checkout','/orders','/order',"/myaccount"]
     if (exempted.includes(pathName)) {
       setSidebar(false)
     }
   }, []);
   const handleAddToCart = (itemCode, qty, price, name, size, variant) => {
-    setKey(Math.random())
+    dispatch(setKey(Math.random()))
+    console.log()
     let newCartItem = {
       itemCode,
       qty,
@@ -134,7 +136,7 @@ const NavBar = ({ user, logout,setKey }) => {
                   onClick={() => handleClick("/myaccount")}
                 >
                   <li className="py-1 hover:text-pink-700 text-sm font-bold">
-                    Account
+                    My Account
                   </li>
                 </Link>
                 <Link href={"/orders"} onClick={() => handleClick("/orders")}>
