@@ -67,7 +67,7 @@ const page = () => {
         theme="light"
         // transition={Bounce}
       />
-      <div className="min-h-full flex items-center justify-center  px-4">
+      <div className="min-h-screen flex items-start justify-center py-24 px-4">
         <div className="w-full max-w-xl">
           <div className="bg-grey-500 p-8">
             {/* Logo */}

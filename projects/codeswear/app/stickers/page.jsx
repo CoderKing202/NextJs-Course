@@ -37,9 +37,9 @@ const page = async () => {
   products = stickers;
   return (
     <div>
-      <section className="text-gray-600 body-font">
+      <section className="text-gray-600 body-font min-h-screen">
         <div className="container px-5 py-24 mx-auto">
-          <div className="flex flex-wrap -m-4 justify-center">
+          <div className="flex flex-wrap -m-4 justify-center mx-5">
             {Object.keys(products).length === 0 && <p>Sorry all the stickers are currently out of stock. New Stock coming soon. Stay Tuned</p>}
             {Object.keys(products).map((item) => {
               return (

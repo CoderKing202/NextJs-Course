@@ -173,7 +173,7 @@ const NavBar = ({ user, logout }) => {
 
       <div
         ref={ref}
-        className={`w-72 h-[100vh] sideCart top-0 absolute bg-pink-100 px-8 overflow-y-scroll py-10 ${sidebar ? "right-0" : "-right-90"} transition-all ${Object.keys(cart.cart).length !== 0 ? "translate-x-0" : "translate-x-full"}`}
+        className={`w-72 h-[100vh] sideCart top-0 absolute bg-pink-100 px-8 overflow-y-scroll py-10 ${sidebar ? "right-0" : "-right-90"} transition-all`}
       >
         <h2 className="font-bold text-xl text-center">Shopping Cart</h2>
         <span

@@ -26,6 +26,7 @@ function SuperNavBar() {
     localStorage.removeItem("myuser");
     dispatch(setUserLogin( {value:null} ));
     dispatch(setKey(Math.random()))
+    // dispatch(clearCart())
     router.push("/")
   };
   useEffect(() => {

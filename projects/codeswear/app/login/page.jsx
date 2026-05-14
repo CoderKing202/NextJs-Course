@@ -71,7 +71,7 @@ const page = () => {
     }
   };
   return (
-    <div className="min-h-full flex items-center justify-center  px-4">
+    <div className="min-h-screen flex items-start justify-center py-24 px-8">
       <ToastContainer
         position="bottom-left"
         autoClose={5000}
