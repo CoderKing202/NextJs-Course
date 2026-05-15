@@ -21,7 +21,7 @@ import FeatherIcon from "feather-icons-react";
 import LogoIcon from "../logo/LogoIcon";
 import Menuitems from "./MenuItems";
 import Buynow from "./Buynow";
-import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 const Sidebar = ({ isMobileSidebarOpen, onSidebarClose, isSidebarOpen }) => {
   const [open, setOpen] = React.useState(true);
@@ -35,8 +35,9 @@ const Sidebar = ({ isMobileSidebarOpen, onSidebarClose, isSidebarOpen }) => {
       setOpen(index);
     }
   };
-  let curl = useRouter();
-  const location = curl.pathname;
+  console.log(lgUp);
+console.log(isSidebarOpen);
+const location = usePathname();
 
   const SidebarContent = (
     <Box p={2} height="100%">
@@ -79,14 +80,14 @@ const Sidebar = ({ isMobileSidebarOpen, onSidebarClose, isSidebarOpen }) => {
         </List>
       </Box>
 
-      <Buynow />
+      <div style={{width:"220px"}}></div>
     </Box>
   );
   if (lgUp) {
     return (
       <Drawer
         anchor="left"
-        open={isSidebarOpen}
+        open={true}
         variant="persistent"
         sx={{
           sx: {

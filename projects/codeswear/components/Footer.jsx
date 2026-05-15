@@ -2,8 +2,14 @@
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
+
 const Footer = () => {
+  const pathName = usePathname();
+  console.log(pathName)
   return (
+    <>
+    {!pathName.startsWith("admin") && 
     <footer className="text-gray-600 body-font">
       <div className="container px-5 py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
         <div className="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">
@@ -14,9 +20,11 @@ const Footer = () => {
             {/* </a> */}
           </Link>
           <p className="mt-2 text-sm text-gray-500 px-4">
-            Wear the &lt;code/&gt;</p>
-            <p className="text-sm text-gray-500 px-4">Premium coding tshirts, hoodies and
-            apparals</p>
+            Wear the &lt;code/&gt;
+          </p>
+          <p className="text-sm text-gray-500 px-4">
+            Premium coding tshirts, hoodies and apparals
+          </p>
         </div>
         <div className="flex-grow flex flex-wrap md:pl-20 -mb-10 md:mt-0 mt-10 md:text-left text-center">
           <div className="lg:w-1/4 md:w-1/2 w-full px-4">
@@ -25,16 +33,37 @@ const Footer = () => {
             </h2>
             <nav className="list-none mb-10">
               <li>
-                <Link href={"/tshirts"} className="text-gray-600 hover:text-gray-800"> Tshirts</Link>
+                <Link
+                  href={"/tshirts"}
+                  className="text-gray-600 hover:text-gray-800"
+                >
+                  {" "}
+                  Tshirts
+                </Link>
               </li>
               <li>
-                <Link href={"/hoodies"} className="text-gray-600 hover:text-gray-800">Hoodies</Link>
+                <Link
+                  href={"/hoodies"}
+                  className="text-gray-600 hover:text-gray-800"
+                >
+                  Hoodies
+                </Link>
               </li>
               <li>
-                <Link href={"/stickers"} className="text-gray-600 hover:text-gray-800">Stickers</Link>
+                <Link
+                  href={"/stickers"}
+                  className="text-gray-600 hover:text-gray-800"
+                >
+                  Stickers
+                </Link>
               </li>
               <li>
-                <Link href={"/mugs"} className="text-gray-600 hover:text-gray-800">Mugs</Link>
+                <Link
+                  href={"/mugs"}
+                  className="text-gray-600 hover:text-gray-800"
+                >
+                  Mugs
+                </Link>
               </li>
             </nav>
           </div>
@@ -161,7 +190,8 @@ const Footer = () => {
           </span>
         </div>
       </div>
-    </footer>
+    </footer>}
+    </>
   );
 };
 
