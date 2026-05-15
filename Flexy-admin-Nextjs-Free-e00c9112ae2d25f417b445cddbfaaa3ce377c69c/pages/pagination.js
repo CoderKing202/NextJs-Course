@@ -4,7 +4,7 @@ import BaseCard from "../src/components/baseCard/BaseCard";
 const Paginations = () => {
   return (
     <Grid container spacing={0}>
-      <Grid size={{ xs: 12, lg: 12 }}>
+      <Grid item xs={12} lg={12}>
         <BaseCard title="Paginations">
           <Stack spacing={2}>
             <Pagination count={10} />
@@ -14,7 +14,7 @@ const Paginations = () => {
           </Stack>
         </BaseCard>
       </Grid>
-      <Grid size={{ xs: 12, lg: 12 }}>
+      <Grid item xs={12} lg={12}>
         <BaseCard title="Outlined Paginations">
           <Stack spacing={2}>
             <Pagination count={10} variant="outlined" />
@@ -24,7 +24,7 @@ const Paginations = () => {
           </Stack>
         </BaseCard>
       </Grid>
-      <Grid size={{ xs: 12, lg: 12 }}>
+      <Grid item xs={12} lg={12}>
         <BaseCard title="Squred Paginations">
           <Stack spacing={2}>
             <Pagination count={10} shape="rounded" variant="outlined" />

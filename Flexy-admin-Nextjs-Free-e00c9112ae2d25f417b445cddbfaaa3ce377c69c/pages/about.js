@@ -12,7 +12,7 @@ export default function About() {
   return (
     <Grid container spacing={0}>
       {/* ------------------------- row 1 ------------------------- */}
-      <Grid size={{ xs: 12, lg: 12 }}>
+      <Grid item xs={12} lg={12}>
         <Card>
           <CardContent>
             <Typography variant="h4">About Card</Typography>

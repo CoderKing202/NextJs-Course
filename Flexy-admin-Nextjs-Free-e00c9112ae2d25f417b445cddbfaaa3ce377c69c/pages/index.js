@@ -7,17 +7,17 @@ import ProductPerfomance from "../src/components/dashboard/ProductPerfomance";
 export default function Index() {
   return (
     <Grid container spacing={0}>
-      <Grid size={{ xs: 12, lg: 12 }}>
+      <Grid item xs={12} lg={12}>
         <SalesOverview />
       </Grid>
       {/* ------------------------- row 1 ------------------------- */}
       <Grid item xs={12} lg={4}>
         <DailyActivity />
       </Grid>
-      <Grid size={{ xs: 12, lg: 8 }}>
+      <Grid item xs={12} lg={8}>
         <ProductPerfomance />
       </Grid>
-      <Grid size={{ xs: 12, lg: 12 }}>
+      <Grid item xs={12} lg={12}>
         <BlogCard />
       </Grid>
     </Grid>

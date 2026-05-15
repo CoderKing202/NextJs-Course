@@ -21,7 +21,7 @@ const Ratings = () => {
   const [hover, setHover] = React.useState(-1);
   return (
     <Grid container spacing={0}>
-      <Grid size={{ xs: 12, lg: 12 }}>
+      <Grid item xs={12} lg={12}>
         <BaseCard title="Basic rating">
           <Box
             sx={{
@@ -45,7 +45,7 @@ const Ratings = () => {
           </Box>
         </BaseCard>
       </Grid>
-      <Grid size={{ xs: 12, lg: 12 }}>
+      <Grid item xs={12} lg={12}>
         <BaseCard title="Hover Feedback">
           <Rating
             name="hover-feedback"

@@ -9,12 +9,11 @@ const Buynow = () => (
       pl={3}
       pr={3}
       m={1}
-      
+      textAlign="center"
       sx={{
         backgroundColor: (theme) => theme.palette.secondary.light,
         borderRadius: "10px",
         overflow: "hidden",
-        textAlign:"center"
       }}
     >
       <Image

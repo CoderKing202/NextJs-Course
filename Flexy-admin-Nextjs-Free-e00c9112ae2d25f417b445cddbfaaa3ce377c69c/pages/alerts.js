@@ -4,7 +4,7 @@ import BaseCard from "../src/components/baseCard/BaseCard";
 const Alerts = () => {
   return (
     <Grid container spacing={0}>
-      <Grid size={{ xs: 12, lg: 12 }}>
+      <Grid item xs={12} lg={12}>
         <BaseCard title="Alerts">
           <Stack spacing={2}>
             <Alert severity="error">
@@ -20,7 +20,7 @@ const Alerts = () => {
           </Stack>
         </BaseCard>
       </Grid>
-      <Grid size={{ xs: 12, lg: 12 }}>
+      <Grid item xs={12} lg={12}>
         <BaseCard title="Alerts Outline">
           <Stack spacing={2}>
             <Alert severity="error" variant="outlined">
@@ -38,7 +38,7 @@ const Alerts = () => {
           </Stack>
         </BaseCard>
       </Grid>
-      <Grid size={{ xs: 12, lg: 12 }}>
+      <Grid item xs={12} lg={12}>
         <BaseCard title="Alert with Desc">
           <Stack spacing={2}>
             <Alert severity="error">

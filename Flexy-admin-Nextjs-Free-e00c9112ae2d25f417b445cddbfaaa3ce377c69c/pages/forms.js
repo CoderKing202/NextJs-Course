@@ -16,7 +16,7 @@ import BaseCard from "../src/components/baseCard/BaseCard";
 const Forms = () => {
   return (
     <Grid container spacing={0}>
-      <Grid size={{ xs: 12, lg: 12 }}>
+      <Grid item xs={12} lg={12}>
         <BaseCard title="Form Layout">
           <Stack spacing={3}>
             <TextField
@@ -89,7 +89,7 @@ const Forms = () => {
         </BaseCard>
       </Grid>
 
-      <Grid size={{ xs: 12, lg: 12 }}>
+      <Grid item xs={12} lg={12}>
         <BaseCard title="Form Design Type">
           <Stack spacing={3} direction="row">
             <TextField

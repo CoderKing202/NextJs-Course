@@ -22,7 +22,7 @@ const Menuitems = [
   {
     title: "Orders",
     icon: "shopping-cart",
-    href: "admin/allorders",
+    href: "/admin/allorders",
   },
 ];
 

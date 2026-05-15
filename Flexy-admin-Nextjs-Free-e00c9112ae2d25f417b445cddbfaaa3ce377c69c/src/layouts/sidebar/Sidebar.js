@@ -14,12 +14,11 @@ import {
   ListItemIcon,
   ListItemText,
 } from "@mui/material";
-import { ListItemButton } from "@mui/material";
 import FeatherIcon from "feather-icons-react";
 import LogoIcon from "../logo/LogoIcon";
 import Menuitems from "./MenuItems";
 import Buynow from "./Buynow";
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 
 const Sidebar = ({ isMobileSidebarOpen, onSidebarClose, isSidebarOpen }) => {
   const [open, setOpen] = React.useState(true);
@@ -40,40 +39,42 @@ const Sidebar = ({ isMobileSidebarOpen, onSidebarClose, isSidebarOpen }) => {
     <Box p={2} height="100%">
       <LogoIcon />
       <Box mt={2}>
-       <ListItem disablePadding key={item.title}>
-  <NextLink
-    href={item.href}
-    style={{ textDecoration: "none", width: "100%" }}
-  >
-    <ListItemButton
-      onClick={() => handleClick(index)}
-      selected={location === item.href}
-      sx={{
-        mb: 1,
-        ...(location === item.href && {
-          color: "white",
-          backgroundColor: (theme) =>
-            `${theme.palette.primary.main}!important`,
-        }),
-      }}
-    >
-      <ListItemIcon>
-        <FeatherIcon
-          style={{
-            color: location === item.href ? "white" : "",
-          }}
-          icon={item.icon}
-          width="20"
-          height="20"
-        />
-      </ListItemIcon>
+        <List>
+          {Menuitems.map((item, index) => (
+            <List component="li" disablePadding key={item.title}>
+              <NextLink href={item.href}>
+                <ListItem
+                  onClick={() => handleClick(index)}
+                  button
+                  selected={location === item.href}
+                  sx={{
+                    mb: 1,
+                    ...(location === item.href && {
+                      color: "white",
+                      backgroundColor: (theme) =>
+                        `${theme.palette.primary.main}!important`,
+                    }),
+                  }}
+                >
+                  <ListItemIcon>
+                    <FeatherIcon
+                      style={{
+                        color: `${location === item.href ? "white" : ""} `,
+                      }}
+                      icon={item.icon}
+                      width="20"
+                      height="20"
+                    />
+                  </ListItemIcon>
 
-      <ListItemText onClick={onSidebarClose}>
-        {item.title}
-      </ListItemText>
-    </ListItemButton>
-  </NextLink>
-</ListItem>
+                  <ListItemText onClick={onSidebarClose}>
+                    {item.title}
+                  </ListItemText>
+                </ListItem>
+              </NextLink>
+            </List>
+          ))}
+        </List>
       </Box>
 
       <Buynow />
@@ -85,7 +86,7 @@ const Sidebar = ({ isMobileSidebarOpen, onSidebarClose, isSidebarOpen }) => {
         anchor="left"
         open={isSidebarOpen}
         variant="persistent"
-        sx={{
+        PaperProps={{
           sx: {
             width: "265px",
             border: "0 !important",
@@ -102,7 +103,7 @@ const Sidebar = ({ isMobileSidebarOpen, onSidebarClose, isSidebarOpen }) => {
       anchor="left"
       open={isMobileSidebarOpen}
       onClose={onSidebarClose}
-      sx={{
+      PaperProps={{
         sx: {
           width: "265px",
           border: "0 !important",

@@ -6,10 +6,10 @@ import { usePathname } from "next/navigation";
 
 const Footer = () => {
   const pathName = usePathname();
-  console.log(pathName)
+  
   return (
     <>
-    {!pathName.startsWith("admin") && 
+    {!pathName.startsWith("/admin") && 
     <footer className="text-gray-600 body-font">
       <div className="container px-5 py-24 mx-auto flex md:items-center lg:items-start md:flex-row md:flex-nowrap flex-wrap flex-col">
         <div className="w-64 flex-shrink-0 md:mx-0 mx-auto text-center md:text-left">

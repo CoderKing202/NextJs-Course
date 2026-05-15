@@ -4,7 +4,7 @@ import ProductPerfomance from "../src/components/dashboard/ProductPerfomance";
 const Tables = () => {
   return (
     <Grid container spacing={0}>
-      <Grid size={{ xs: 12, lg: 12 }}>
+      <Grid item xs={12} lg={12}>
         <ProductPerfomance />
       </Grid>
     </Grid>
