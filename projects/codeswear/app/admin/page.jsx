@@ -3,10 +3,11 @@ import { Grid } from "@mui/material";
 import BlogCard from "@/src/components/dashboard/BlogCard";
 import SalesOverview from "@/src/components/dashboard/SalseOverview";
 import DailyActivity from "@/src/components/dashboard/DailyActivity";
-import ProductPerfomance from "@/src/components/dashboard/ProductPerfomance";
+import ProductPerfomance from "@/src/components/dashboard/AllProducts";
 import FullLayout from "@/src/layouts/FullLayout";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "@/src/theme/theme";
+
 
 
 export default function Index() {

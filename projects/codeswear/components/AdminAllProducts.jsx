@@ -3,15 +3,15 @@ import FullLayout from "@/src/layouts/FullLayout";
 import { ThemeProvider } from "@mui/material/styles";
 import theme from "@/src/theme/theme";
 import { Grid } from "@mui/material";
-import ProductPerfomance from "@/src/components/dashboard/AllProducts";
+import AllProducts from "@/src/components/dashboard/AllProducts";
 
-const page = () => {
+const AdminAllProducts = ({products}) => {
   return (
     <ThemeProvider theme={theme}>
       <FullLayout>
         <Grid container spacing={0}>
           <Grid size={12}>
-            <ProductPerfomance />
+            <AllProducts products={products}/>
           </Grid>
         </Grid>
       </FullLayout>
@@ -19,4 +19,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default AdminAllProducts;

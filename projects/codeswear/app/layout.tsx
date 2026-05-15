@@ -5,7 +5,7 @@ import Navbar from "@/components/Navbar";
 import SuperNavBar from "@/components/SuperNavBar";
 import Footer from "@/components/Footer";
 import ReduxProvider from "@/components/ReduxProvider";
-
+import { AppRouterCacheProvider } from '@mui/material-nextjs/v15-appRouter';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,6 +32,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <AppRouterCacheProvider>
         <ReduxProvider>
         
               <SuperNavBar />
@@ -39,6 +40,7 @@ export default function RootLayout({
               <Footer />
             
         </ReduxProvider>
+        </AppRouterCacheProvider>
       </body>
     </html>
   );

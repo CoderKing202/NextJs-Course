@@ -1,22 +1,16 @@
-"use client";
-import FullLayout from "@/src/layouts/FullLayout";
-import { ThemeProvider } from "@mui/material/styles";
-import theme from "@/src/theme/theme";
-import { Grid } from "@mui/material";
-import ProductPerfomance from "@/src/components/dashboard/ProductPerfomance";
-
-const page = () => {
+// "use client"
+import connectDb from "@/helper/mongoose"
+import AdminAllProducts from "@/components/AdminAllProducts"
+import Product from "@/models/Product"
+const page = async () => {
+  await connectDb()
+  let products = await Product.find()
+   
   return (
-    <ThemeProvider theme={theme}>
-      <FullLayout>
-        <Grid container spacing={0}>
-          <Grid size={12}>
-            <ProductPerfomance />
-          </Grid>
-        </Grid>
-      </FullLayout>
-    </ThemeProvider>
-  );
-};
+    <div>
+      <AdminAllProducts products={JSON.parse(JSON.stringify(products))}/>
+    </div>
+  )
+}
 
-export default page;
+export default page

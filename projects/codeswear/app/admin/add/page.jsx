@@ -24,13 +24,13 @@ const page = () => {
       ...form,
       [e.target.name]: e.target.value,
     });
-    console.log(form)
+    console.log(form);
   };
-  const submitForm = async (e)=>{
-    e.preventDefault()
-    // fetch API Request to add a product 
-    let a  = await fetch("http://localhost:3000/api/addproducts")
-  }
+  const submitForm = async (e) => {
+    e.preventDefault();
+    // fetch API Request to add a product
+    let a = await fetch("http://localhost:3000/api/addproducts");
+  };
   return (
     <ThemeProvider theme={theme}>
       <FullLayout>
@@ -38,14 +38,46 @@ const page = () => {
           <Grid size={12}>
             <BaseCard title="Add a Product">
               <Stack spacing={3} style={{ width: "100%" }}>
-                <TextField onChange={onChange} value={form.title?form.title:""} name="title" label="title" variant="outlined" />
-                <TextField onChange={onChange} value={form.type?form.type:""} name="type" label="Type" variant="outlined" />
-                <TextField onChange={onChange} value={form.size?form.size:""} name="size" label="Size" variant="outlined" />
-                <TextField onChange={onChange} value={form.color?form.color:""} name="color" label="Color" variant="outlined" />
-                <TextField onChange={onChange} value={form.slug?form.slug:""} name="slug" label="Slug" variant="outlined" />
+                <TextField
+                  onChange={onChange}
+                  value={form.title ? form.title : ""}
+                  name="title"
+                  label="title"
+                  variant="outlined"
+                />
+                <TextField
+                  onChange={onChange}
+                  value={form.type ? form.type : ""}
+                  name="type"
+                  label="Type"
+                  variant="outlined"
+                />
+                <TextField
+                  onChange={onChange}
+                  value={form.size ? form.size : ""}
+                  name="size"
+                  label="Size"
+                  variant="outlined"
+                />
+                <TextField
+                  onChange={onChange}
+                  value={form.color ? form.color : ""}
+                  name="color"
+                  label="Color"
+                  variant="outlined"
+                />
+                <TextField
+                  onChange={onChange}
+                  value={form.slug ? form.slug : ""}
+                  name="slug"
+                  label="Slug"
+                  variant="outlined"
+                />
 
-                <TextField onChange={onChange}
-                  value={form.description?form.description:""} name="description"
+                <TextField
+                  onChange={onChange}
+                  value={form.description ? form.description : ""}
+                  name="description"
                   label="Description"
                   multiline
                   rows={4}
