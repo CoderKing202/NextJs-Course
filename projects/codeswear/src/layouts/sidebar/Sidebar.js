@@ -35,8 +35,8 @@ const Sidebar = ({ isMobileSidebarOpen, onSidebarClose, isSidebarOpen }) => {
       setOpen(index);
     }
   };
-  console.log(lgUp);
-console.log(isSidebarOpen);
+  
+
 const location = usePathname();
 
   const SidebarContent = (
